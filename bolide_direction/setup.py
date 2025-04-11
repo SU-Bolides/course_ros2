@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'direction'
+package_name = 'bolide_direction'
 
 setup(
     name=package_name,
@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'cmd_dir = bolide_direction.cmd_dir:main',
         ],
     },
 )

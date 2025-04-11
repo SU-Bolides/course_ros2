@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'stm32'
+package_name = 'bolide_stm32'
 
 setup(
     name=package_name,
@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'stm32_node = bolide_stm32.stm32_node:main',
         ],
     },
 )
