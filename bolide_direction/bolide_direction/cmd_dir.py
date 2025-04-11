@@ -9,8 +9,9 @@ from bolide_interfaces.msg import SpeedDirection
 
 
 def pos2psi(pos):
-    """Transform the position information in the steering angle. Psi is the steering angle (rad),
-    Theta is the motor angle (rad), Pos is the motor angle (DXL Units)
+    """Transform the position information in the steering angle. Psi is\
+        the steering angle (rad),\
+        Theta is the motor angle (rad), Pos is the motor angle (DXL Units)
 
     Args:
         pos (float): the motor angle in DXL Units
@@ -55,21 +56,21 @@ class CommandDirection(Node):
 
         # Dynamixel stuff:
         # Protocol version
-        self.PROTOCOL_VERSION            = 1.0               # See which protocol version is used in the Dynamixel
+        self.PROTOCOL_VERSION = 1.0  # See which protocol version is used in the Dynamixel
 
         # Default setting
-        self.DXL_ID                      = 1                 
-        self.BAUDRATE                    = 115200            
-        self.DEVICENAME                  = '/dev/ttyUSB0'    # Symlink it in the udev to ttyU2D2
+        self.DXL_ID = 1
+        self.BAUDRATE = 115200
+        self.DEVICENAME = '/dev/ttyU2D2'    # Symlink it in the udev to ttyU2D2
 
-        self.MAX_STEERING_ANGLE_DEG = 15.5 # deg
+        self.MAX_STEERING_ANGLE_DEG = 15.5  # deg
 
         self.target_steering_angle_deg = 0.0
         self.curr_steering_angle_deg = 0.0
 
-        self.MS              = False
+        self.MS = False
 
-
+        # Setting it
         self.portHandler = PortHandler(self.DEVICENAME)
         self.packetHandler = PacketHandler(self.PROTOCOL_VERSION)
 
@@ -99,7 +100,7 @@ class CommandDirection(Node):
             self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL_ID, 30, set_dir_deg(self.target_steering_angle_deg))   # Set the target position of the steering servo
         except:
             self.get_logger().warn("[WARNING] -- DYNAMIXEL PROBLEM")
-    
+
     def cmd_callback(self, data):
         if self.MS:
             self.target_steering_angle_deg = -data.direction
@@ -116,4 +117,3 @@ def main(args=None):
         rclpy.spin(listener)
     except Exception as e:
         print(f"Error in Command Direction : {e}")
-    
