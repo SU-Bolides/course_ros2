@@ -1,5 +1,6 @@
 """ The node to command the direction """
 
+# IMPORTS
 import math
 from dynamixel_sdk import PortHandler, PacketHandler
 
@@ -61,7 +62,9 @@ class CommandDirection(Node):
         # Default setting
         self.DXL_ID = 1
         self.BAUDRATE = 115200
-        self.DEVICENAME = '/dev/ttyU2D2'    # Symlink it in the udev to ttyU2D2
+        self.DEVICENAME = '/dev/ttyU2D2'
+        # udev rule in /etc/udev/rules.d/99-usb-dynamixel.rules:
+        # SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", SYMLINK+="ttyU2D2", MODE="0777"
 
         self.MAX_STEERING_ANGLE_DEG = 15.5  # deg
 
@@ -70,7 +73,7 @@ class CommandDirection(Node):
 
         self.MS = False
 
-        # Setting it
+        # Setting the connection
         self.portHandler = PortHandler(self.DEVICENAME)
         self.packetHandler = PacketHandler(self.PROTOCOL_VERSION)
 
@@ -85,12 +88,14 @@ class CommandDirection(Node):
         else:
             self.get_logger().error("[ERROR] -- Failed to change the baudrate")
 
+        # Subscription
         self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10 )
 
+        # Timer
         self.dynamixels_comms = self.create_timer(0.03, self.dxl_callback)  # Update the dynamixels every 30ms (33Hz)
 
     def dxl_callback(self):
-        """Update the dynamixels. 
+        """Update the dynamixels.\
         We check if the target steering angle is within the limits of the steering angle
         """
         self.target_steering_angle_deg = max(min(self.target_steering_angle_deg, self.MAX_STEERING_ANGLE_DEG), -self.MAX_STEERING_ANGLE_DEG)
@@ -98,10 +103,16 @@ class CommandDirection(Node):
             pos, _, _ = self.packetHandler.read2ByteTxRx(self.portHandler, self.DXL_ID, 36)   # Read the current position of the steering servo
             self.curr_steering_angle_deg = -180/3.14159*pos2psi(pos)    # Convert the position to an angle in degrees
             self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL_ID, 30, set_dir_deg(self.target_steering_angle_deg))   # Set the target position of the steering servo
-        except:
+        except Exception as e:
             self.get_logger().warn("[WARNING] -- DYNAMIXEL PROBLEM")
+            self.get_logger().warn(f"[WARNING] -- {e}")
 
     def cmd_callback(self, data):
+        """The callback to update the command value
+
+        Args:
+            data (float): the direction in float between -1 and -1
+        """
         if self.MS:
             self.target_steering_angle_deg = -data.direction
         else:

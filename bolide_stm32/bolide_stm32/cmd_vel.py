@@ -27,6 +27,7 @@ class CommandSpeed(Node):
         super().__init__('cmd_vel')
 
         self.init = 0
+        self.debug = False
 
         self.MAXSPEED = 10
         self.MINSPEED = 8.4
@@ -46,9 +47,13 @@ class CommandSpeed(Node):
         self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10)
         self.stm32_publish = self.create_publisher(Int16, "/stm32_data", 10)
 
+        # TEST SECURITY CHECK -- TODO test it
+        self.timer_safety = self.create_timer(0.5, self.emergency_stop, autostart=False)
+
         self.init = 1
 
     def cmd_callback(self, data):
+        self.timer_safety.cancel()
         self.cmd_velocity = data.speed
         if (not (get_sign(data.speed) == self.curr_dir)):
             if (not self.curr_dir) or (abs(self.curr_velocity_m_s) < self.DIR_VEL_THRESHOLD_M_S):
@@ -61,7 +66,11 @@ class CommandSpeed(Node):
 
         # Update the last command time
         self.last_command_time = self.get_clock().now()
+        self.timer_safety.restart()
         self.command(self.cmd_velocity)
+
+    def emergence_stop(self):
+        self.command(0.0)
 
     def command(self, cmd_speed):
         if 1 > cmd_speed > 0.02:
@@ -93,14 +102,14 @@ class CommandSpeed(Node):
             self.tx_data.data = int(cycle_ratio*0.00938 * self.esc_period)
 
         # The previous implementation used RPi PWM which was unreliable.
-            # Experiments showed the RPi to overshoot duration by 1.066. 
+            # Experiments showed the RPi to overshoot duration by 1.066.
 
         # Cyclic ratio is the time of the period spent high. So 100 would be constantly high, 50 would be half high half low, etc.
         # The esc period is 20000 ns, and we send the actual pulse duration to the stm32. We also convert from RPi to "true".
 
-        if rclpy.ok():
+        if rclpy.ok() and self.debug:
             print("Tx_data = ", self.tx_data)
-            self.stm32_publish.publish(self.tx_data)
+        self.stm32_publish.publish(self.tx_data)
 
 
 def main(args=None):
