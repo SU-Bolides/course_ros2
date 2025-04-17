@@ -40,7 +40,7 @@ vir
 
 On the terminal check the connection of all USB devices (Lidar and Dynamixel) with :
 ```shell
-ls /dev/tty*
+ls /dev/ttyUSB*
 ```
 if you see /dev/ttyU2D2 and /dev/ttyLIDAR, it's all good, else check the connections.
 
