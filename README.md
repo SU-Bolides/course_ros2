@@ -45,14 +45,17 @@ ls /dev/ttyUSB*
 ```
 if you see /dev/ttyU2D2 and /dev/ttyLIDAR, it's all good, else check the connections.
 
-**TODO - change the command**
-Source your workspace, if needed, and don't forget to press on the bottom button near the screen display on the car. Then source the virtual environment and launch the perception process:
+**TODO - ADD A LAUNCHFILE FOR THIS IN BOLIDE_TELEOP**
+Source your workspace, if needed, and don't forget to press on the bottom button near the screen display on the car. Then source the virtual environment and run the stm32 node:
 ```shell
-ros2 launch perception_bolide perception.launch.py
+ros2 run bolide_stm32 stm32_node
 ```
-On another terminal now, source again the virtual environment and run ackermann_controller node:
+On two other terminals now, source again the virtual environment and run speed and direction node:
 ```shell
-ros2 run control_bolide ackermann_controller
+ros2 run bolide_stm32 cmd_vel
+```
+```shell
+ros2 run bolide_direction cmd_dir
 ```
 And to teleoperate with the keyboard open a last terminal and run:
 ```shell
