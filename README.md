@@ -16,8 +16,8 @@ The official Sorbonne University ROS2 repository for the CoVaPsy course at ENS P
 - Raspberry Pi 5 (RPi5) - OS : Ubuntu 24.04
 - ROS2 Jazzy
 - Repository for Hig-Level nodes : **TODO**
-- Official repository of the race (for schematics): **TODO**
-- Repository of last year (2024) : **TODO**
+- [Official repository of the race (for schematics)](https://github.com/ajuton-ens/CourseVoituresAutonomesSaclay.git)
+- [Repository of last year (2024)](https://github.com/SU-Bolides/course_2025_slam_pkgs.git) : There is the main branch in ROS and the ROS2 branch
 
 **Check the [tutorials](Tutorials.md) if you need some extra infos.**
 
