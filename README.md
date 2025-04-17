@@ -45,23 +45,12 @@ ls /dev/ttyUSB*
 ```
 if you see /dev/ttyU2D2 and /dev/ttyLIDAR, it's all good, else check the connections.
 
-**TODO - ADD A LAUNCHFILE FOR THIS IN BOLIDE_TELEOP**
-Source your workspace, if needed, and don't forget to press on the bottom button near the screen display on the car. Then source the virtual environment and run the stm32 node:
+Now on the terminal type :
 ```shell
-ros2 run bolide_stm32 stm32_node
+ros2 launch bolide_teleop teleop_keyboard.launch
 ```
-On two other terminals now, source again the virtual environment and run speed and direction node:
-```shell
-ros2 run bolide_stm32 cmd_vel
-```
-```shell
-ros2 run bolide_direction cmd_dir
-```
-And to teleoperate with the keyboard open a last terminal and run:
-```shell
-ros2 run planning_bolide teleop_node
-```
-Normally, you're good to move the car with the arrows keys of your keyboard. 
+
+You will be able to move the car with the arrows of your keyboard.
 
 ## Low level nodes
 This repository contains only the low level code for the car and a simple teleop package. Please use another repository to create High-level nodes like a controller for the position, transformation of raw data or a SLAM mechanism.
