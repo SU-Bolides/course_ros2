@@ -1,0 +1,100 @@
+[0.040s] Invoking command in '/home/voiture/course_ros2/build/bolide_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/voiture/course_ros2/build/bolide_interfaces -- -j4 -l4
+[0.899s] [  1%] [34m[1mGenerating type hashes for ROS interfaces[0m
+[0.899s] [  1%] Built target ament_cmake_python_copy_bolide_interfaces
+[0.899s] running egg_info
+[0.900s] creating bolide_interfaces.egg-info
+[0.900s] writing bolide_interfaces.egg-info/PKG-INFO
+[0.900s] writing dependency_links to bolide_interfaces.egg-info/dependency_links.txt
+[0.900s] writing top-level names to bolide_interfaces.egg-info/top_level.txt
+[0.900s] writing manifest file 'bolide_interfaces.egg-info/SOURCES.txt'
+[0.900s] [  1%] Built target bolide_interfaces__rosidl_generator_type_description
+[0.900s] [  2%] [34m[1mGenerating C code for ROS interfaces[0m
+[0.900s] [  4%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[0.900s] reading manifest file 'bolide_interfaces.egg-info/SOURCES.txt'
+[0.900s] writing manifest file 'bolide_interfaces.egg-info/SOURCES.txt'
+[0.900s] [  4%] Built target ament_cmake_python_build_bolide_interfaces_egg
+[1.906s] [  4%] Built target bolide_interfaces__cpp
+[2.080s] [  5%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/fork_speed__description.c.o[0m
+[2.092s] [  6%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/camera_info__functions.c.o[0m
+[2.099s] [  8%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/camera_info__description.c.o[0m
+[2.108s] [  9%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/camera_info__type_support.c.o[0m
+[2.254s] [ 10%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/fork_speed__functions.c.o[0m
+[2.312s] [ 12%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/fork_speed__type_support.c.o[0m
+[2.324s] [ 13%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/multiple_range__description.c.o[0m
+[2.382s] [ 14%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/multiple_range__functions.c.o[0m
+[2.402s] [ 16%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/multiple_range__type_support.c.o[0m
+[2.403s] [ 17%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/speed_direction__description.c.o[0m
+[2.428s] [ 18%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/speed_direction__functions.c.o[0m
+[2.478s] [ 20%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/speed_direction__type_support.c.o[0m
+[2.490s] [ 21%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/srv/detail/launch_ekf__description.c.o[0m
+[2.500s] [ 22%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/srv/detail/launch_ekf__functions.c.o[0m
+[2.539s] [ 24%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/srv/detail/launch_ekf__type_support.c.o[0m
+[2.638s] [ 25%] [32m[1mLinking C shared library libbolide_interfaces__rosidl_generator_c.so[0m
+[2.777s] [ 25%] Built target bolide_interfaces__rosidl_generator_c
+[2.801s] [ 31%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[2.804s] [ 31%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[2.804s] [ 31%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[2.804s] [ 31%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[3.408s] [ 32%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/camera_info__type_support.cpp.o[0m
+[3.620s] [ 33%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/camera_info__type_support.c.o[0m
+[3.713s] [ 35%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/fork_speed__type_support.c.o[0m
+[3.747s] [ 36%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/camera_info__type_support.cpp.o[0m
+[3.785s] [ 37%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/camera_info__type_support_c.cpp.o[0m
+[3.798s] [ 39%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/multiple_range__type_support.c.o[0m
+[3.889s] [ 40%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/speed_direction__type_support.c.o[0m
+[3.970s] [ 41%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/srv/detail/launch_ekf__type_support.c.o[0m
+[4.086s] [ 43%] [32m[1mLinking C shared library libbolide_interfaces__rosidl_typesupport_introspection_c.so[0m
+[4.216s] [ 43%] Built target bolide_interfaces__rosidl_typesupport_introspection_c
+[4.238s] [ 44%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[4.371s] [ 45%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/fork_speed__type_support.cpp.o[0m
+[4.870s] [ 47%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/fork_speed__type_support.cpp.o[0m
+[4.883s] [ 48%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/fork_speed__type_support_c.cpp.o[0m
+[4.945s] [ 50%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/camera_info__type_support.cpp.o[0m
+[5.038s] [ 51%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/multiple_range__type_support.cpp.o[0m
+[5.041s] [ 52%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/fork_speed__type_support.cpp.o[0m
+[5.127s] [ 54%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/multiple_range__type_support.cpp.o[0m
+[5.223s] [ 55%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/speed_direction__type_support.cpp.o[0m
+[5.317s] [ 56%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/srv/launch_ekf__type_support.cpp.o[0m
+[5.502s] [ 58%] [32m[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_c.so[0m
+[5.626s] [ 58%] Built target bolide_interfaces__rosidl_typesupport_c
+[5.647s] [ 59%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/multiple_range__type_support_c.cpp.o[0m
+[5.689s] [ 60%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/speed_direction__type_support.cpp.o[0m
+[5.820s] [ 62%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/speed_direction__type_support_c.cpp.o[0m
+[5.881s] [ 63%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/multiple_range__type_support.cpp.o[0m
+[6.340s] [ 64%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/srv/launch_ekf__type_support.cpp.o[0m
+[6.590s] [ 66%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/srv/detail/launch_ekf__type_support_c.cpp.o[0m
+[6.776s] [ 67%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[6.892s] [ 68%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/speed_direction__type_support.cpp.o[0m
+[7.197s] [ 70%] [32m[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_cpp.so[0m
+[7.426s] [ 70%] Built target bolide_interfaces__rosidl_typesupport_cpp
+[7.453s] [ 71%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/srv/detail/dds_fastrtps/launch_ekf__type_support.cpp.o[0m
+[7.710s] [ 72%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/camera_info__type_support.cpp.o[0m
+[7.730s] [ 74%] [32m[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_fastrtps_c.so[0m
+[7.982s] [ 75%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/fork_speed__type_support.cpp.o[0m
+[8.005s] [ 75%] Built target bolide_interfaces__rosidl_typesupport_fastrtps_c
+[8.028s] [ 77%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/multiple_range__type_support.cpp.o[0m
+[8.420s] [ 78%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/speed_direction__type_support.cpp.o[0m
+[8.673s] [ 79%] [32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/srv/detail/launch_ekf__type_support.cpp.o[0m
+[8.815s] [ 81%] [32m[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[9.055s] [ 81%] Built target bolide_interfaces__rosidl_typesupport_fastrtps_cpp
+[9.358s] [ 82%] [32m[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_introspection_cpp.so[0m
+[9.555s] [ 82%] Built target bolide_interfaces__rosidl_typesupport_introspection_cpp
+[9.594s] [ 82%] Built target bolide_interfaces
+[9.634s] [ 83%] [34m[1mGenerating Python code for ROS interfaces[0m
+[10.495s] [ 83%] Built target bolide_interfaces__py
+[10.534s] [ 85%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_multiple_range_s.c.o[0m
+[10.536s] [ 87%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_speed_direction_s.c.o[0m
+[10.536s] [ 89%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_camera_info_s.c.o[0m
+[10.536s] [ 89%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_fork_speed_s.c.o[0m
+[10.933s] [ 90%] [32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/srv/_launch_ekf_s.c.o[0m
+[11.164s] [ 91%] [32m[1mLinking C shared library libbolide_interfaces__rosidl_generator_py.so[0m
+[11.282s] [ 91%] Built target bolide_interfaces__rosidl_generator_py
+[11.324s] [ 95%] [32mBuilding C object CMakeFiles/bolide_interfaces_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/bolide_interfaces/_bolide_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[11.325s] [ 95%] [32mBuilding C object CMakeFiles/bolide_interfaces_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/bolide_interfaces/_bolide_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[11.325s] [ 95%] [32mBuilding C object CMakeFiles/bolide_interfaces_s__rosidl_typesupport_c.dir/rosidl_generator_py/bolide_interfaces/_bolide_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[11.546s] [ 97%] [32m[1mLinking C shared module rosidl_generator_py/bolide_interfaces/bolide_interfaces_s__rosidl_typesupport_c.so[0m
+[11.551s] [ 98%] [32m[1mLinking C shared module rosidl_generator_py/bolide_interfaces/bolide_interfaces_s__rosidl_typesupport_introspection_c.so[0m
+[11.552s] [100%] [32m[1mLinking C shared module rosidl_generator_py/bolide_interfaces/bolide_interfaces_s__rosidl_typesupport_fastrtps_c.so[0m
+[11.616s] [100%] Built target bolide_interfaces_s__rosidl_typesupport_c
+[11.619s] [100%] Built target bolide_interfaces_s__rosidl_typesupport_introspection_c
+[11.621s] [100%] Built target bolide_interfaces_s__rosidl_typesupport_fastrtps_c

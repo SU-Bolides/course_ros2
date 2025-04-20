@@ -101,3 +101,6 @@ def main(args=None):
         controller.perform_action()
     controller.destroy_node()
     rclpy.shutdown()
+
+if __name__ == '__main__':
+	main()

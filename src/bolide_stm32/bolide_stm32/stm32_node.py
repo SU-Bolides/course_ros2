@@ -214,3 +214,6 @@ def main(args=None):
         rate.sleep()
     rclpy.shutdown()
     thread.join()
+
+if __name__ == '__main__':
+	main()

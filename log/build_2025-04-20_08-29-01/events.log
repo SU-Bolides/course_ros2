@@ -1,0 +1,244 @@
+[0.000000] (-) TimerEvent: {}
+[0.000363] (bolide_direction) JobQueued: {'identifier': 'bolide_direction', 'dependencies': OrderedDict()}
+[0.000410] (bolide_interfaces) JobQueued: {'identifier': 'bolide_interfaces', 'dependencies': OrderedDict()}
+[0.000434] (bolide_teleop) JobQueued: {'identifier': 'bolide_teleop', 'dependencies': OrderedDict()}
+[0.000452] (sllidar_ros2) JobQueued: {'identifier': 'sllidar_ros2', 'dependencies': OrderedDict()}
+[0.000469] (bolide_stm32) JobQueued: {'identifier': 'bolide_stm32', 'dependencies': OrderedDict({'bolide_interfaces': '/home/voiture/course_ros2/install/bolide_interfaces'})}
+[0.000788] (bolide_interfaces) JobStarted: {'identifier': 'bolide_interfaces'}
+[0.008725] (bolide_direction) JobStarted: {'identifier': 'bolide_direction'}
+[0.017864] (bolide_teleop) JobStarted: {'identifier': 'bolide_teleop'}
+[0.028268] (sllidar_ros2) JobStarted: {'identifier': 'sllidar_ros2'}
+[0.036254] (bolide_interfaces) JobProgress: {'identifier': 'bolide_interfaces', 'progress': 'cmake'}
+[0.037651] (bolide_interfaces) JobProgress: {'identifier': 'bolide_interfaces', 'progress': 'build'}
+[0.038406] (bolide_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/voiture/course_ros2/build/bolide_interfaces', '--', '-j4', '-l4'], 'cwd': '/home/voiture/course_ros2/build/bolide_interfaces', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'voiture', 'SSH_CLIENT': '172.20.10.9 63031 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/voiture', 'OLDPWD': '/home/voiture/course_ros2/src/bolide_teleop/bolide_teleop', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1002/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/voiture/course_ros2/install:/home/voiture/course_2025_slam_pkgs/workspace/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'voiture', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '2', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1002', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'ROS_DOMAIN_ID': '10', 'AMENT_PREFIX_PATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/sllidar_ros2:/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/voiture/course_ros2/build/bolide_interfaces', 'SSH_CONNECTION': '172.20.10.9 63031 172.20.10.10 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/sllidar_ros2:/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide:/opt/ros/jazzy'}), 'shell': False}
+[0.099690] (-) TimerEvent: {}
+[0.200573] (-) TimerEvent: {}
+[0.300950] (-) TimerEvent: {}
+[0.401312] (-) TimerEvent: {}
+[0.501972] (-) TimerEvent: {}
+[0.602434] (-) TimerEvent: {}
+[0.702889] (-) TimerEvent: {}
+[0.803337] (-) TimerEvent: {}
+[0.899700] (bolide_interfaces) StdoutLine: {'line': b'[  1%] \x1b[34m\x1b[1mGenerating type hashes for ROS interfaces\x1b[0m\n'}
+[0.900017] (bolide_interfaces) StdoutLine: {'line': b'[  1%] Built target ament_cmake_python_copy_bolide_interfaces\n'}
+[0.900140] (bolide_interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[0.900240] (bolide_interfaces) StdoutLine: {'line': b'creating bolide_interfaces.egg-info\n'}
+[0.900327] (bolide_interfaces) StdoutLine: {'line': b'writing bolide_interfaces.egg-info/PKG-INFO\n'}
+[0.900407] (bolide_interfaces) StdoutLine: {'line': b'writing dependency_links to bolide_interfaces.egg-info/dependency_links.txt\n'}
+[0.900503] (bolide_interfaces) StdoutLine: {'line': b'writing top-level names to bolide_interfaces.egg-info/top_level.txt\n'}
+[0.900618] (bolide_interfaces) StdoutLine: {'line': b"writing manifest file 'bolide_interfaces.egg-info/SOURCES.txt'\n"}
+[0.900699] (bolide_interfaces) StdoutLine: {'line': b'[  1%] Built target bolide_interfaces__rosidl_generator_type_description\n'}
+[0.900781] (bolide_interfaces) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[0.900860] (bolide_interfaces) StdoutLine: {'line': b'[  4%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[0.900940] (bolide_interfaces) StdoutLine: {'line': b"reading manifest file 'bolide_interfaces.egg-info/SOURCES.txt'\n"}
+[0.901014] (bolide_interfaces) StdoutLine: {'line': b"writing manifest file 'bolide_interfaces.egg-info/SOURCES.txt'\n"}
+[0.901091] (bolide_interfaces) StdoutLine: {'line': b'[  4%] Built target ament_cmake_python_build_bolide_interfaces_egg\n'}
+[0.903148] (sllidar_ros2) JobProgress: {'identifier': 'sllidar_ros2', 'progress': 'cmake'}
+[0.903396] (-) TimerEvent: {}
+[0.904880] (sllidar_ros2) Command: {'cmd': ['/usr/bin/cmake', '/home/voiture/course_ros2/src/sllidar_ros2/share/sllidar_ros2', '-DCMAKE_INSTALL_PREFIX=/home/voiture/course_ros2/install/sllidar_ros2'], 'cwd': '/home/voiture/course_ros2/build/sllidar_ros2', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'voiture', 'SSH_CLIENT': '172.20.10.9 63031 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/voiture', 'OLDPWD': '/home/voiture/course_ros2/src/bolide_teleop/bolide_teleop', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1002/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/voiture/course_ros2/install:/home/voiture/course_2025_slam_pkgs/workspace/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'voiture', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '2', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1002', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'ROS_DOMAIN_ID': '10', 'AMENT_PREFIX_PATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/sllidar_ros2:/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/voiture/course_ros2/build/sllidar_ros2', 'SSH_CONNECTION': '172.20.10.9 63031 172.20.10.10 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide/lib/python3.12/site-packages:/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/voiture/course_2025_slam_pkgs/workspace/install/sllidar_ros2:/home/voiture/course_2025_slam_pkgs/workspace/install/bolide_interfaces:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/voiture/course_2025_slam_pkgs/workspace/install/planning_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/perception_bolide:/home/voiture/course_2025_slam_pkgs/workspace/install/particle_filter:/home/voiture/course_2025_slam_pkgs/workspace/install/control_bolide:/opt/ros/jazzy'}), 'shell': False}
+[0.931802] (sllidar_ros2) StderrLine: {'line': b'\x1b[33mCMake Warning:\n'}
+[0.932305] (sllidar_ros2) StderrLine: {'line': b'  Ignoring extra path from command line:\n'}
+[0.934556] (sllidar_ros2) StderrLine: {'line': b'\n'}
+[0.934875] (sllidar_ros2) StderrLine: {'line': b'   "/home/voiture/course_ros2/src/sllidar_ros2/share/sllidar_ros2"\n'}
+[0.934979] (sllidar_ros2) StderrLine: {'line': b'\n'}
+[0.935060] (sllidar_ros2) StderrLine: {'line': b'\x1b[0m\n'}
+[0.935141] (sllidar_ros2) StderrLine: {'line': b'\x1b[0mCMake Error: The source directory "/home/voiture/course_ros2/src/sllidar_ros2/share/sllidar_ros2" does not appear to contain CMakeLists.txt.\n'}
+[0.935223] (sllidar_ros2) StderrLine: {'line': b'Specify --help for usage, or press the help button on the CMake GUI.\x1b[0m\n'}
+[0.943808] (sllidar_ros2) CommandEnded: {'returncode': 1}
+[0.952579] (sllidar_ros2) JobEnded: {'identifier': 'sllidar_ros2', 'rc': 1}
+[1.003588] (-) TimerEvent: {}
+[1.104033] (-) TimerEvent: {}
+[1.204431] (-) TimerEvent: {}
+[1.308556] (-) TimerEvent: {}
+[1.409133] (-) TimerEvent: {}
+[1.511569] (-) TimerEvent: {}
+[1.612007] (-) TimerEvent: {}
+[1.712493] (-) TimerEvent: {}
+[1.813070] (-) TimerEvent: {}
+[1.906757] (bolide_interfaces) StdoutLine: {'line': b'[  4%] Built target bolide_interfaces__cpp\n'}
+[1.913194] (-) TimerEvent: {}
+[2.015795] (-) TimerEvent: {}
+[2.080670] (bolide_interfaces) StdoutLine: {'line': b'[  5%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/fork_speed__description.c.o\x1b[0m\n'}
+[2.092973] (bolide_interfaces) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/camera_info__functions.c.o\x1b[0m\n'}
+[2.099717] (bolide_interfaces) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/camera_info__description.c.o\x1b[0m\n'}
+[2.108690] (bolide_interfaces) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/camera_info__type_support.c.o\x1b[0m\n'}
+[2.116057] (-) TimerEvent: {}
+[2.220735] (-) TimerEvent: {}
+[2.254565] (bolide_interfaces) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/fork_speed__functions.c.o\x1b[0m\n'}
+[2.256314] (bolide_direction) JobEnded: {'identifier': 'bolide_direction', 'rc': 'SIGINT'}
+[2.294797] (bolide_teleop) JobEnded: {'identifier': 'bolide_teleop', 'rc': 'SIGINT'}
+[2.312821] (bolide_interfaces) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/fork_speed__type_support.c.o\x1b[0m\n'}
+[2.320852] (-) TimerEvent: {}
+[2.324687] (bolide_interfaces) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/multiple_range__description.c.o\x1b[0m\n'}
+[2.382179] (bolide_interfaces) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/multiple_range__functions.c.o\x1b[0m\n'}
+[2.402888] (bolide_interfaces) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/multiple_range__type_support.c.o\x1b[0m\n'}
+[2.403294] (bolide_interfaces) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/speed_direction__description.c.o\x1b[0m\n'}
+[2.423581] (-) TimerEvent: {}
+[2.428698] (bolide_interfaces) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/speed_direction__functions.c.o\x1b[0m\n'}
+[2.478877] (bolide_interfaces) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/msg/detail/speed_direction__type_support.c.o\x1b[0m\n'}
+[2.490090] (bolide_interfaces) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/srv/detail/launch_ekf__description.c.o\x1b[0m\n'}
+[2.500930] (bolide_interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/srv/detail/launch_ekf__functions.c.o\x1b[0m\n'}
+[2.523754] (-) TimerEvent: {}
+[2.539732] (bolide_interfaces) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_c.dir/rosidl_generator_c/bolide_interfaces/srv/detail/launch_ekf__type_support.c.o\x1b[0m\n'}
+[2.623851] (-) TimerEvent: {}
+[2.638689] (bolide_interfaces) StdoutLine: {'line': b'[ 25%] \x1b[32m\x1b[1mLinking C shared library libbolide_interfaces__rosidl_generator_c.so\x1b[0m\n'}
+[2.724016] (-) TimerEvent: {}
+[2.777842] (bolide_interfaces) StdoutLine: {'line': b'[ 25%] Built target bolide_interfaces__rosidl_generator_c\n'}
+[2.801623] (bolide_interfaces) StdoutLine: {'line': b'[ 31%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[2.803790] (bolide_interfaces) StdoutLine: {'line': b'[ 31%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[2.804734] (bolide_interfaces) StdoutLine: {'line': b'[ 31%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[2.804859] (bolide_interfaces) StdoutLine: {'line': b'[ 31%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[2.825559] (-) TimerEvent: {}
+[2.925946] (-) TimerEvent: {}
+[3.026365] (-) TimerEvent: {}
+[3.128549] (-) TimerEvent: {}
+[3.228968] (-) TimerEvent: {}
+[3.329563] (-) TimerEvent: {}
+[3.408529] (bolide_interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/camera_info__type_support.cpp.o\x1b[0m\n'}
+[3.429716] (-) TimerEvent: {}
+[3.530212] (-) TimerEvent: {}
+[3.620317] (bolide_interfaces) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/camera_info__type_support.c.o\x1b[0m\n'}
+[3.630871] (-) TimerEvent: {}
+[3.713252] (bolide_interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/fork_speed__type_support.c.o\x1b[0m\n'}
+[3.731068] (-) TimerEvent: {}
+[3.747844] (bolide_interfaces) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/camera_info__type_support.cpp.o\x1b[0m\n'}
+[3.785128] (bolide_interfaces) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/camera_info__type_support_c.cpp.o\x1b[0m\n'}
+[3.798878] (bolide_interfaces) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/multiple_range__type_support.c.o\x1b[0m\n'}
+[3.833593] (-) TimerEvent: {}
+[3.889454] (bolide_interfaces) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/msg/detail/speed_direction__type_support.c.o\x1b[0m\n'}
+[3.933857] (-) TimerEvent: {}
+[3.969898] (bolide_interfaces) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/bolide_interfaces/srv/detail/launch_ekf__type_support.c.o\x1b[0m\n'}
+[4.036616] (-) TimerEvent: {}
+[4.087017] (bolide_interfaces) StdoutLine: {'line': b'[ 43%] \x1b[32m\x1b[1mLinking C shared library libbolide_interfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[4.136747] (-) TimerEvent: {}
+[4.216610] (bolide_interfaces) StdoutLine: {'line': b'[ 43%] Built target bolide_interfaces__rosidl_typesupport_introspection_c\n'}
+[4.236922] (-) TimerEvent: {}
+[4.238193] (bolide_interfaces) StdoutLine: {'line': b'[ 44%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[4.337060] (-) TimerEvent: {}
+[4.371075] (bolide_interfaces) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/fork_speed__type_support.cpp.o\x1b[0m\n'}
+[4.437208] (-) TimerEvent: {}
+[4.538576] (-) TimerEvent: {}
+[4.639316] (-) TimerEvent: {}
+[4.742768] (-) TimerEvent: {}
+[4.843172] (-) TimerEvent: {}
+[4.870281] (bolide_interfaces) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/fork_speed__type_support.cpp.o\x1b[0m\n'}
+[4.883754] (bolide_interfaces) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/fork_speed__type_support_c.cpp.o\x1b[0m\n'}
+[4.944716] (-) TimerEvent: {}
+[4.945288] (bolide_interfaces) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/camera_info__type_support.cpp.o\x1b[0m\n'}
+[5.038286] (bolide_interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/multiple_range__type_support.cpp.o\x1b[0m\n'}
+[5.041576] (bolide_interfaces) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/fork_speed__type_support.cpp.o\x1b[0m\n'}
+[5.044835] (-) TimerEvent: {}
+[5.127786] (bolide_interfaces) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/multiple_range__type_support.cpp.o\x1b[0m\n'}
+[5.144984] (-) TimerEvent: {}
+[5.223658] (bolide_interfaces) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/msg/speed_direction__type_support.cpp.o\x1b[0m\n'}
+[5.245132] (-) TimerEvent: {}
+[5.317040] (bolide_interfaces) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/bolide_interfaces/srv/launch_ekf__type_support.cpp.o\x1b[0m\n'}
+[5.346583] (-) TimerEvent: {}
+[5.477760] (-) TimerEvent: {}
+[5.502725] (bolide_interfaces) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[5.577913] (-) TimerEvent: {}
+[5.626544] (bolide_interfaces) StdoutLine: {'line': b'[ 58%] Built target bolide_interfaces__rosidl_typesupport_c\n'}
+[5.647876] (bolide_interfaces) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/multiple_range__type_support_c.cpp.o\x1b[0m\n'}
+[5.678057] (-) TimerEvent: {}
+[5.689436] (bolide_interfaces) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/msg/speed_direction__type_support.cpp.o\x1b[0m\n'}
+[5.778202] (-) TimerEvent: {}
+[5.820644] (bolide_interfaces) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/msg/detail/speed_direction__type_support_c.cpp.o\x1b[0m\n'}
+[5.878340] (-) TimerEvent: {}
+[5.881589] (bolide_interfaces) StdoutLine: {'line': b'[ 63%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/multiple_range__type_support.cpp.o\x1b[0m\n'}
+[5.980724] (-) TimerEvent: {}
+[6.081322] (-) TimerEvent: {}
+[6.181815] (-) TimerEvent: {}
+[6.282850] (-) TimerEvent: {}
+[6.340524] (bolide_interfaces) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/bolide_interfaces/srv/launch_ekf__type_support.cpp.o\x1b[0m\n'}
+[6.383023] (-) TimerEvent: {}
+[6.484811] (-) TimerEvent: {}
+[6.585573] (-) TimerEvent: {}
+[6.590610] (bolide_interfaces) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/bolide_interfaces/srv/detail/launch_ekf__type_support_c.cpp.o\x1b[0m\n'}
+[6.685717] (-) TimerEvent: {}
+[6.776473] (bolide_interfaces) StdoutLine: {'line': b'[ 67%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[6.788572] (-) TimerEvent: {}
+[6.889061] (-) TimerEvent: {}
+[6.892701] (bolide_interfaces) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/msg/detail/dds_fastrtps/speed_direction__type_support.cpp.o\x1b[0m\n'}
+[6.989215] (-) TimerEvent: {}
+[7.089979] (-) TimerEvent: {}
+[7.191930] (-) TimerEvent: {}
+[7.197330] (bolide_interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[7.294740] (-) TimerEvent: {}
+[7.395921] (-) TimerEvent: {}
+[7.426583] (bolide_interfaces) StdoutLine: {'line': b'[ 70%] Built target bolide_interfaces__rosidl_typesupport_cpp\n'}
+[7.453708] (bolide_interfaces) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/bolide_interfaces/srv/detail/dds_fastrtps/launch_ekf__type_support.cpp.o\x1b[0m\n'}
+[7.496072] (-) TimerEvent: {}
+[7.598307] (-) TimerEvent: {}
+[7.700910] (-) TimerEvent: {}
+[7.710578] (bolide_interfaces) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/camera_info__type_support.cpp.o\x1b[0m\n'}
+[7.730352] (bolide_interfaces) StdoutLine: {'line': b'[ 74%] \x1b[32m\x1b[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[7.801080] (-) TimerEvent: {}
+[7.904593] (-) TimerEvent: {}
+[7.982932] (bolide_interfaces) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/fork_speed__type_support.cpp.o\x1b[0m\n'}
+[8.005206] (bolide_interfaces) StdoutLine: {'line': b'[ 75%] Built target bolide_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[8.005615] (-) TimerEvent: {}
+[8.028634] (bolide_interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/multiple_range__type_support.cpp.o\x1b[0m\n'}
+[8.105788] (-) TimerEvent: {}
+[8.209935] (-) TimerEvent: {}
+[8.310692] (-) TimerEvent: {}
+[8.411569] (-) TimerEvent: {}
+[8.420759] (bolide_interfaces) StdoutLine: {'line': b'[ 78%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/msg/detail/speed_direction__type_support.cpp.o\x1b[0m\n'}
+[8.512634] (-) TimerEvent: {}
+[8.615638] (-) TimerEvent: {}
+[8.673912] (bolide_interfaces) StdoutLine: {'line': b'[ 79%] \x1b[32mBuilding CXX object CMakeFiles/bolide_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/bolide_interfaces/srv/detail/launch_ekf__type_support.cpp.o\x1b[0m\n'}
+[8.715782] (-) TimerEvent: {}
+[8.815041] (bolide_interfaces) StdoutLine: {'line': b'[ 81%] \x1b[32m\x1b[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[8.815866] (-) TimerEvent: {}
+[8.916444] (-) TimerEvent: {}
+[9.017589] (-) TimerEvent: {}
+[9.055108] (bolide_interfaces) StdoutLine: {'line': b'[ 81%] Built target bolide_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[9.117722] (-) TimerEvent: {}
+[9.218096] (-) TimerEvent: {}
+[9.318491] (-) TimerEvent: {}
+[9.358287] (bolide_interfaces) StdoutLine: {'line': b'[ 82%] \x1b[32m\x1b[1mLinking CXX shared library libbolide_interfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[9.418615] (-) TimerEvent: {}
+[9.519045] (-) TimerEvent: {}
+[9.555488] (bolide_interfaces) StdoutLine: {'line': b'[ 82%] Built target bolide_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[9.594742] (bolide_interfaces) StdoutLine: {'line': b'[ 82%] Built target bolide_interfaces\n'}
+[9.619171] (-) TimerEvent: {}
+[9.634388] (bolide_interfaces) StdoutLine: {'line': b'[ 83%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[9.719269] (-) TimerEvent: {}
+[9.819578] (-) TimerEvent: {}
+[9.919841] (-) TimerEvent: {}
+[10.020100] (-) TimerEvent: {}
+[10.120349] (-) TimerEvent: {}
+[10.220612] (-) TimerEvent: {}
+[10.320864] (-) TimerEvent: {}
+[10.421528] (-) TimerEvent: {}
+[10.495237] (bolide_interfaces) StdoutLine: {'line': b'[ 83%] Built target bolide_interfaces__py\n'}
+[10.522597] (-) TimerEvent: {}
+[10.534253] (bolide_interfaces) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_multiple_range_s.c.o\x1b[0m\n'}
+[10.536626] (bolide_interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_speed_direction_s.c.o\x1b[0m\n'}
+[10.537007] (bolide_interfaces) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_camera_info_s.c.o\x1b[0m\n'}
+[10.537164] (bolide_interfaces) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/msg/_fork_speed_s.c.o\x1b[0m\n'}
+[10.622717] (-) TimerEvent: {}
+[10.723115] (-) TimerEvent: {}
+[10.823513] (-) TimerEvent: {}
+[10.923958] (-) TimerEvent: {}
+[10.933984] (bolide_interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces__rosidl_generator_py.dir/rosidl_generator_py/bolide_interfaces/srv/_launch_ekf_s.c.o\x1b[0m\n'}
+[11.024067] (-) TimerEvent: {}
+[11.124446] (-) TimerEvent: {}
+[11.164790] (bolide_interfaces) StdoutLine: {'line': b'[ 91%] \x1b[32m\x1b[1mLinking C shared library libbolide_interfaces__rosidl_generator_py.so\x1b[0m\n'}
+[11.224587] (-) TimerEvent: {}
+[11.282433] (bolide_interfaces) StdoutLine: {'line': b'[ 91%] Built target bolide_interfaces__rosidl_generator_py\n'}
+[11.324639] (bolide_interfaces) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/bolide_interfaces/_bolide_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[11.325059] (-) TimerEvent: {}
+[11.325468] (bolide_interfaces) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/bolide_interfaces/_bolide_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[11.325741] (bolide_interfaces) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/bolide_interfaces_s__rosidl_typesupport_c.dir/rosidl_generator_py/bolide_interfaces/_bolide_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[11.426594] (-) TimerEvent: {}
+[11.527135] (-) TimerEvent: {}
+[11.546469] (bolide_interfaces) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/bolide_interfaces/bolide_interfaces_s__rosidl_typesupport_c.so\x1b[0m\n'}
+[11.551672] (bolide_interfaces) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/bolide_interfaces/bolide_interfaces_s__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[11.552188] (bolide_interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/bolide_interfaces/bolide_interfaces_s__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[11.616159] (bolide_interfaces) StdoutLine: {'line': b'[100%] Built target bolide_interfaces_s__rosidl_typesupport_c\n'}
+[11.619858] (bolide_interfaces) StdoutLine: {'line': b'[100%] Built target bolide_interfaces_s__rosidl_typesupport_introspection_c\n'}
+[11.621978] (bolide_interfaces) StdoutLine: {'line': b'[100%] Built target bolide_interfaces_s__rosidl_typesupport_fastrtps_c\n'}
+[11.627203] (-) TimerEvent: {}
+[11.645241] (bolide_interfaces) JobEnded: {'identifier': 'bolide_interfaces', 'rc': 'SIGINT'}
+[11.646454] (bolide_stm32) JobSkipped: {'identifier': 'bolide_stm32'}
+[11.646504] (-) EventReactorShutdown: {}
