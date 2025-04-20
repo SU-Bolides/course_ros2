@@ -1,0 +1,3 @@
+[console_scripts]
+cmd_vel = bolide_stm32.cmd_vel:main
+stm32_node = bolide_stm32.stm32_node:main

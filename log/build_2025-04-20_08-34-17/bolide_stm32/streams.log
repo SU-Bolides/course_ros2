@@ -1,0 +1,42 @@
+[1.183s] Invoking command in '/home/voiture/course_ros2/src/bolide_stm32': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/voiture/course_ros2/build/bolide_stm32/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bolide_stm32 build --build-base /home/voiture/course_ros2/build/bolide_stm32/build install --record /home/voiture/course_ros2/build/bolide_stm32/install.log --single-version-externally-managed install_data
+[1.546s] running egg_info
+[1.547s] creating ../../build/bolide_stm32/bolide_stm32.egg-info
+[1.572s] writing ../../build/bolide_stm32/bolide_stm32.egg-info/PKG-INFO
+[1.572s] writing dependency_links to ../../build/bolide_stm32/bolide_stm32.egg-info/dependency_links.txt
+[1.572s] writing entry points to ../../build/bolide_stm32/bolide_stm32.egg-info/entry_points.txt
+[1.573s] writing requirements to ../../build/bolide_stm32/bolide_stm32.egg-info/requires.txt
+[1.573s] writing top-level names to ../../build/bolide_stm32/bolide_stm32.egg-info/top_level.txt
+[1.573s] writing manifest file '../../build/bolide_stm32/bolide_stm32.egg-info/SOURCES.txt'
+[1.625s] reading manifest file '../../build/bolide_stm32/bolide_stm32.egg-info/SOURCES.txt'
+[1.625s] adding license file 'LICENSE'
+[1.626s] writing manifest file '../../build/bolide_stm32/bolide_stm32.egg-info/SOURCES.txt'
+[1.626s] running build
+[1.626s] running build_py
+[1.626s] creating /home/voiture/course_ros2/build/bolide_stm32/build
+[1.626s] creating /home/voiture/course_ros2/build/bolide_stm32/build/lib
+[1.626s] creating /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32
+[1.626s] copying bolide_stm32/stm32_node.py -> /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32
+[1.627s] copying bolide_stm32/cmd_vel.py -> /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32
+[1.627s] copying bolide_stm32/__init__.py -> /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32
+[1.627s] running install
+[1.636s] running install_lib
+[1.662s] creating /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32
+[1.662s] copying /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32/stm32_node.py -> /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32
+[1.662s] copying /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32/cmd_vel.py -> /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32
+[1.663s] copying /home/voiture/course_ros2/build/bolide_stm32/build/lib/bolide_stm32/__init__.py -> /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32
+[1.663s] byte-compiling /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32/stm32_node.py to stm32_node.cpython-312.pyc
+[1.666s] byte-compiling /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32/cmd_vel.py to cmd_vel.cpython-312.pyc
+[1.667s] byte-compiling /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32/__init__.py to __init__.cpython-312.pyc
+[1.668s] running install_data
+[1.668s] creating /home/voiture/course_ros2/install/bolide_stm32/share/ament_index
+[1.668s] creating /home/voiture/course_ros2/install/bolide_stm32/share/ament_index/resource_index
+[1.668s] creating /home/voiture/course_ros2/install/bolide_stm32/share/ament_index/resource_index/packages
+[1.668s] copying resource/bolide_stm32 -> /home/voiture/course_ros2/install/bolide_stm32/share/ament_index/resource_index/packages
+[1.668s] copying package.xml -> /home/voiture/course_ros2/install/bolide_stm32/share/bolide_stm32
+[1.668s] running install_egg_info
+[1.696s] Copying ../../build/bolide_stm32/bolide_stm32.egg-info to /home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages/bolide_stm32-0.0.0-py3.12.egg-info
+[1.697s] running install_scripts
+[1.878s] Installing cmd_vel script to /home/voiture/course_ros2/install/bolide_stm32/lib/bolide_stm32
+[1.878s] Installing stm32_node script to /home/voiture/course_ros2/install/bolide_stm32/lib/bolide_stm32
+[1.878s] writing list of installed files to '/home/voiture/course_ros2/build/bolide_stm32/install.log'
+[1.956s] Invoked command in '/home/voiture/course_ros2/src/bolide_stm32' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/voiture/course_ros2/build/bolide_stm32/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/voiture/course_ros2/install/bolide_stm32/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bolide_stm32 build --build-base /home/voiture/course_ros2/build/bolide_stm32/build install --record /home/voiture/course_ros2/build/bolide_stm32/install.log --single-version-externally-managed install_data
