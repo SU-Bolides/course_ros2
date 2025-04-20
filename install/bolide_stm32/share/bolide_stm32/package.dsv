@@ -1,6 +1,0 @@
-source;share/bolide_stm32/hook/pythonpath.ps1
-source;share/bolide_stm32/hook/pythonpath.dsv
-source;share/bolide_stm32/hook/pythonpath.sh
-source;share/bolide_stm32/hook/ament_prefix_path.ps1
-source;share/bolide_stm32/hook/ament_prefix_path.dsv
-source;share/bolide_stm32/hook/ament_prefix_path.sh
