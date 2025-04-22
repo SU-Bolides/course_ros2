@@ -42,19 +42,21 @@ class CommandSpeed(Node):
         self.curr_dir = 1
         self.tx_data = Int16()
 
+        self.safety_timeout = 0.5
         self.last_command_time = self.get_clock().now()
 
         self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10)
         self.stm32_publish = self.create_publisher(Int16, "/stm32_data", 10)
 
         # TEST SECURITY CHECK -- TODO test it
-        self.timer_safety = self.create_timer(0.5, self.emergency_stop, autostart=False)
+        # Unique Timer for the security 
+        self.timer_safety = self.create_timer(0.1, self.check_emergency_stop)
 
         self.init = 1
 
     def cmd_callback(self, data):
-        self.timer_safety.cancel()
-        self.timer_safety = self.create_timer(0.5, self.emergency_stop)  # <-- redémarrage du timer
+        #self.timer_safety.cancel()
+        #self.timer_safety = self.create_timer(0.5, self.emergency_stop)  # <-- redémarrage du timer
         self.cmd_velocity = data.speed
         if (not (get_sign(data.speed) == self.curr_dir)):
             if (not self.curr_dir) or (abs(self.curr_velocity_m_s) < self.DIR_VEL_THRESHOLD_M_S):
@@ -70,7 +72,14 @@ class CommandSpeed(Node):
         #self.timer_safety.restart() # les objets Timer dans ROS 2 (rclpy) n'ont pas de méthode .restart()
         self.command(self.cmd_velocity)
 
+    def check_emergency_stop(self):
+        now = self.get_clock().now()
+        time_elapsed=(now-self.last_command_time).nanoseconds*1e-9 # Convert ns -> s
+        if time_elapsed > self.safety_timeout:
+            self.emergency_stop()
+
     def emergency_stop(self):
+        self.get_logger().warn("Emergency stop triggered due to timeout.")
         self.command(0.0)
 
     def command(self, cmd_speed):
