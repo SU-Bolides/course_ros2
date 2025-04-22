@@ -54,6 +54,7 @@ class CommandSpeed(Node):
 
     def cmd_callback(self, data):
         self.timer_safety.cancel()
+        self.timer_safety = self.create_timer(0.5, self.emergency_stop)  # <-- redémarrage du timer
         self.cmd_velocity = data.speed
         if (not (get_sign(data.speed) == self.curr_dir)):
             if (not self.curr_dir) or (abs(self.curr_velocity_m_s) < self.DIR_VEL_THRESHOLD_M_S):
@@ -66,7 +67,7 @@ class CommandSpeed(Node):
 
         # Update the last command time
         self.last_command_time = self.get_clock().now()
-        self.timer_safety.restart()
+        #self.timer_safety.restart() # les objets Timer dans ROS 2 (rclpy) n'ont pas de méthode .restart()
         self.command(self.cmd_velocity)
 
     def emergency_stop(self):
