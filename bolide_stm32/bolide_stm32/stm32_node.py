@@ -68,12 +68,15 @@ class STM32_Parser(Node):
         self.yaw = 0.  # twist around the z axis (vertical)
         self.acc_x = 0.  # acceleration in the x axis
         self.yaw_rate = 0.  # rotation speed around the z-axis of the car
+
+        self.imu_data = Imu()  # IMU message type (see sheet online)
+
         # Set the covariance of the IMU (surely from datasheet) TODO - check it
         self.imu_data.angular_velocity_covariance = [0, 0, 0, 0, 0, 0, 0, 0, 1e-2]
         self.imu_data.linear_acceleration_covariance = [1e-1, 0, 0, 0, 0, 0, 0, 0, 0]
         self.imu_data.orientation_covariance = [0, 0, 0, 0, 0, 0, 0, 0, 1e-2]
         self.imu_data.header.frame_id = "base_link"
-        self.imu_data = Imu()  # IMU message type (see sheet online)
+        
 
         # Transmitter
         self.tx_buffer = [0] * 8  # data that we'll transmit to the STM32
