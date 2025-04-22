@@ -128,3 +128,6 @@ def main(args=None):
         rclpy.spin(listener)
     except Exception as e:
         print(f"Error in Command Direction : {e}")
+
+if __name__ == '__main__':
+    main()
