@@ -18,7 +18,7 @@ class KeyboardController(Node):
 
         self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
 
-        self.timer = self.create_timer(0.4, self.timer_callback)
+        #self.timer = self.create_timer(0.4, self.timer_callback) --> self.timer_callback will be called every 0.4s which means that periodic commands will be sent to the system so that we can't do the emergency_stop due to the presence of these commands 
         # init speed and direction
         self.current_speed = 0.0
         self.current_direction = 0.0
@@ -28,8 +28,8 @@ class KeyboardController(Node):
         key_mapping_str = '\n'.join([f'\t{key}: {value}' for key, value in self.key_mapping.items()])
         print(f"Key control mapping:\n{key_mapping_str}\n")
 
-    def timer_callback(self):
-        self.publish_speed_direction()
+    #def timer_callback(self):
+        #self.publish_speed_direction()
 
     def publish_speed_direction(self):
         print("publish curr_speed = ", self.current_speed)
