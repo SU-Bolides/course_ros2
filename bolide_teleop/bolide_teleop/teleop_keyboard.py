@@ -80,23 +80,23 @@ class KeyboardController(Node):
                 self.current_direction += -1.0
             else:
                 self.current_direction = -1.0
-            if self.current_speed !=0.0:
+            if self.current_speed ==0.0:
                 # No need to touch the speed if it's already different from 0 
-                pass
-            else:
+                #pass
+            #else:
                 # Make sure that we don't start by turning if the speed is at 0
-                self.current_speed=0.0
+                self.current_direction=self.current_direction
         elif action == 'RIGHT':
             if self.current_direction < 1.0:
                 self.current_direction += 1.0
             else:
                 self.current_direction = 1.0
-            if self.current_speed !=0.0:
+            if self.current_speed ==0.0:
                 # No need to touch the speed if it's already different from 0 
-                pass
-            else:
+                #pass
+            #else:
                 # Make sure that we don't start by turning if the speed is at 0
-                self.current_speed=0.0
+                self.current_direction=self.current_direction
         elif action == 'BRAKE':
             self.current_speed = 2.0 * coeff
         elif action == 'QUIT':
