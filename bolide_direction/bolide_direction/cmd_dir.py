@@ -94,6 +94,35 @@ class CommandDirection(Node):
         # Timer
         self.dynamixels_comms = self.create_timer(0.03, self.dxl_callback)  # Update the dynamixels every 30ms (33Hz)
 
+        # Set safety_timeout 
+        self.safety_timeout = 0.5
+        
+        # Initialisation of the last command time
+        self.last_command_time = self.get_clock().now()
+
+        # Timer de sécurité pour vérifier l'inactivité
+        self.timer_safety = self.create_timer(0.1, self.check_emergency_stop)
+
+    def check_emergency_stop(self):
+        now=self.get_clock().now()
+        time_elapsed=(now-self.last_command_time).nanoseconds*1e-9 # Convert ns --> s
+        if time_elapsed > self.safety_timeout :
+            self.emergency_stop
+
+    def emergency_stop(self):
+        self.get_logger().warn("Emergency stop triggered for steering due to timeout.")
+        self.target_steering_angle_deg = 0.0  # Remise à zéro de l'angle de direction
+        self.set_steering_angle()  # Appel de la méthode pour mettre à jour le servomoteur
+
+    def set_steering_angle(self):
+        """Update the servomotor's position in function of the target angle."""
+        try:
+            pos = set_dir_deg(self.target_steering_angle_deg)  # Convert in DXL position 
+            self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL_ID, 30, pos)  # Sending position to servomotor 
+        except Exception as e:
+            self.get_logger().warn(f"[WARNING] -- DYNAMIXEL PROBLEM: {e}")
+
+
     def dxl_callback(self):
         """Update the dynamixels.\
         We check if the target steering angle is within the limits of the steering angle
@@ -113,12 +142,18 @@ class CommandDirection(Node):
         Args:
             data (float): the direction in float between -1 and -1
         """
+        # Update the last command time 
+        self.last_command_time = self.get_clock().now()
+
         if self.MS:
             self.target_steering_angle_deg = -data.direction
         else:
             self.target_steering_angle_deg = -data.direction * self.MAX_STEERING_ANGLE_DEG
 
         self.last_command_time = self.get_clock().now()
+
+        # Recall the function to update the servomoteur's direction 
+        self.set_steering_angle()
 
 
 def main(args=None):

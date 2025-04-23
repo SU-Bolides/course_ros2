@@ -54,9 +54,14 @@ class KeyboardController(Node):
         else:
             return key
 
-    def perform_action(self, coeff=1.0):
-        mykey = click.getchar()
-        action = self.key_mapping[mykey]
+    def perform_action(self,action, coeff=1.0):
+        # mykey = click.getchar() 
+        
+        # This getchar() is blocking : if the user does not press a key, nothing happens
+        # even the timer does not work correctly (because the main thread is blocked on 
+        # the keyboard and the spin() is on another thread)
+        
+        # action = self.key_mapping[mykey]
 
         if action == '':
             coeff = 0.0
@@ -97,10 +102,15 @@ def main(args=None):
     thread = threading.Thread(target=rclpy.spin, args=(controller, ), daemon=True)
     thread.start()
 
-    while True:
-        controller.perform_action()
-    controller.destroy_node()
-    rclpy.shutdown()
+    try:
+        while True:
+            key=click.getchar()
+            controller.on_key_press(key)#perform_action()
+    except KeyboardInterrupt:
+        controller.get_logger().info("Shutting down teleop")
+    finally:
+        controller.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
 	main()
