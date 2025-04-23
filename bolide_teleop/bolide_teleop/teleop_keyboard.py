@@ -82,7 +82,11 @@ class KeyboardController(Node):
                 else:
                     self.current_direction = -1.0
             else:  # otherwise we only touch the direction
-                self.current_direction = -1.0
+                self.current_speed = 0.0
+                if self.current_direction > -1.0:
+                    self.current_direction -= 1.0
+                else:
+                    self.current_direction = -1.0
         elif action == 'RIGHT':
             if self.current_speed != 0.0:
                 if self.current_direction < 1.0:
@@ -90,7 +94,11 @@ class KeyboardController(Node):
                 else:
                     self.current_direction = 1.0
             else:
-                self.current_direction = 1.0
+                self.current_speed = 0.0
+                if self.current_direction < 1.0:
+                    self.current_direction += 1.0
+                else:
+                    self.current_direction = 1.0
         elif action == 'BRAKE':
             self.current_speed = 2.0 * coeff
         elif action == 'QUIT':
