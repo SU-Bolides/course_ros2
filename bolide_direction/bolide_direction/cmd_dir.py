@@ -131,7 +131,7 @@ class CommandDirection(Node):
         try:
             pos, _, _ = self.packetHandler.read2ByteTxRx(self.portHandler, self.DXL_ID, 36)   # Read the current position of the steering servo
             self.curr_steering_angle_deg = -180/3.14159*pos2psi(pos)    # Convert the position to an angle in degrees
-            self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL_ID, 30, set_dir_deg(self.target_steering_angle_deg))   # Set the target position of the steering servo
+            self.set_steering_angle()   # Set the target position of the steering servo
         except Exception as e:
             self.get_logger().warn("[WARNING] -- DYNAMIXEL PROBLEM")
             self.get_logger().warn(f"[WARNING] -- {e}")
