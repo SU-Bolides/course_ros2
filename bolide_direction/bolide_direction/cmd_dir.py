@@ -90,8 +90,8 @@ class CommandDirection(Node):
             self.get_logger().error("[ERROR] -- Failed to change the baudrate")
 
         # Subscription
-        #self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10 )
-        self.sub = self.create_subscription(Float32, "/cmd_direction", self.cmd_callback, 10)
+        self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10 )
+        # self.sub = self.create_subscription(Float32, "/cmd_direction", self.cmd_callback, 10)
 
         # Timer
         self.dynamixels_comms = self.create_timer(0.03, self.dxl_callback)  # Update the dynamixels every 30ms (33Hz)
@@ -148,9 +148,9 @@ class CommandDirection(Node):
         self.last_command_time = self.get_clock().now()
 
         if self.MS:
-            self.target_steering_angle_deg = -data.data #direction
+            self.target_steering_angle_deg = -data.direction #direction
         else:
-            self.target_steering_angle_deg = -data.data * self.MAX_STEERING_ANGLE_DEG #direction
+            self.target_steering_angle_deg = -data.direction * self.MAX_STEERING_ANGLE_DEG #direction
 
         self.last_command_time = self.get_clock().now()
 

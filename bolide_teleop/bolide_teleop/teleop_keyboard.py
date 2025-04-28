@@ -17,9 +17,9 @@ class KeyboardController(Node):
         self.get_logger().info("Teleop node started, Keyboard interrupt (ctrl+c will stop the node)")
 
         # create publish of speed and direction 
-        #self.speed_pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
-        self.speed_pub = self.create_publisher(Float32, '/cmd_speed', 10)
-        self.direction_pub = self.create_publisher(Float32, '/cmd_direction', 10)
+        self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
+        # self.speed_pub = self.create_publisher(Float32, '/cmd_speed', 10)
+        # self.direction_pub = self.create_publisher(Float32, '/cmd_direction', 10)
 
         self.timer = self.create_timer(0.4, self.timer_callback) #--> self.timer_callback will be called every 0.4s which means that periodic commands will be sent to the system so that we can't do the emergency_stop due to the presence of these commands 
         # init speed and direction
@@ -32,13 +32,12 @@ class KeyboardController(Node):
         print(f"Key control mapping:\n{key_mapping_str}\n")
 
     def timer_callback(self):
-        self.publish_speed()
-        self.publish_direction()
+        self.publish_speed_direction()
 
-    # def publish_speed_direction(self):
-    #     print("publish curr_speed = ", self.current_speed)
-    #     print("publish curr_direction = ", self.current_direction)
-    #     self.pub.publish(SpeedDirection(speed=self.current_speed, direction=self.current_direction))
+    def publish_speed_direction(self):
+        print("publish curr_speed = ", self.current_speed)
+        print("publish curr_direction = ", self.current_direction)
+        self.pub.publish(SpeedDirection(speed=self.current_speed, direction=self.current_direction))
 
     def publish_speed(self):
         print("publish curr_speed = ", self.current_speed)

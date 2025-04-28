@@ -46,8 +46,8 @@ class CommandSpeed(Node):
         self.safety_timeout = 0.5
         self.last_command_time = self.get_clock().now()
 
-        #self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10)
-        self.sub = self.create_subscription(Float32, "/cmd_speed", self.cmd_callback, 10)
+        self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10)
+        # self.sub = self.create_subscription(Float32, "/cmd_speed", self.cmd_callback, 10)
         self.stm32_publish = self.create_publisher(Int16, "/stm32_data", 10)
 
         # TEST SECURITY CHECK -- TODO test it
@@ -59,14 +59,14 @@ class CommandSpeed(Node):
     def cmd_callback(self, data):
         self.timer_safety.cancel()
         # self.timer_safety = self.create_timer(0.75, self.emergency_stop)  # <-- redémarrage du timer
-        self.cmd_velocity = data.data #speed
-        if (not (get_sign(data.data) == self.curr_dir)): #speed
+        self.cmd_velocity = data.speed #speed
+        if (not (get_sign(data.speed) == self.curr_dir)): #speed
             if (not self.curr_dir) or (abs(self.curr_velocity_m_s) < self.DIR_VEL_THRESHOLD_M_S):
 
                 # We can command reverse while the car is going forwards
                 # However, the car needs to stop and then start reversing before it actually goes in reverse.
                 # So we only switch the sign if the car is going slow enough to be considered "stationnary".
-                self.curr_dir = get_sign(data.data) #speed 
+                self.curr_dir = get_sign(data.speed) #speed 
                 # rospy.loginfo("Switched direction (speed sign): %s", str(self.curr_dir))
 
         # Update the last command time

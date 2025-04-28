@@ -1,0 +1,96 @@
+from math import pi, cos, sin, atan, isnan
+
+import rclpy
+from rclpy.node import Node
+
+from bolide_interfaces.msg import SpeedDirection
+from sensor_msgs.msg import LaserScan
+from nav_msgs.msg import Odometry
+# from ackermann_msgs.msg import AckermannDriveStamped
+
+# HELPERS FUNCTIONS
+
+
+def get_range(scan_msg, angle):
+    assert (angle >= scan_msg.angle_min and angle <= scan_msg.angle_max)
+    i = int((angle - scan_msg.angle_min)/(scan_msg.angle_increment))
+    if (isnan(scan_msg.ranges[i]) or scan_msg.ranges[i] > scan_msg.range_max):
+        return scan_msg.range_max
+    return scan_msg.ranges[i]
+
+
+def to_radians(theta):
+    return pi * theta / 180.0
+
+
+def to_degrees(theta):
+    return theta * 180.0 / pi
+
+
+class WallFollow(Node):
+    def __init__(self):
+        super().__init__("wall_follow")
+
+        # PID CONTROL PARAMS
+        self.kp = 8.0
+        self.ki = 0.000
+        self.kd = 0.5
+        self.servo_offset = 0.0
+        self.prev_error = 0.0
+        self.error = 0.0
+        self.integral = 0.0
+        self.start_t = -1
+        self.curr_t = 0.0
+        self.prev_t = 0.0
+
+        # PUBLISHER AND SUBSCRIBER
+        self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
+        self.sub = self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)
+
+    def get_error(self, scan_msg, dist):
+        a = get_range(scan_msg, to_radians(-50.0))
+        b = get_range(scan_msg, to_radians(-90.0))
+        theta = to_radians(40.0)  # 90-50 = 40°
+        alpha = atan((a * cos(theta) - b)/(a * sin(theta)))
+        D_t = b * cos(alpha)
+        self.get_logger().info(f"D_t : {D_t}")
+
+        self.prev_error = self.error
+        self.error = dist - D_t
+        self.integral += self.error
+        self.prev_t = self.curr_t
+        self.curr_t = scan_msg.header.stamp.nanosec * 10e-9 + scan_msg.header.stamp.sec
+        if self.start_t == 0.0:
+            self.start_t = self.curr_t
+        self.get_logger().info(f"error is {self.error}, a {a} et b {b}")
+    def pid_control(self):
+        angle = 0.0
+        if self.prev_t == 0:
+            return
+        angle = self.kp * self.error + self.ki * self.integral * (self.curr_t - self.start_t) + self.kd * (self.error)/(self.curr_t - self.prev_t)
+        self.get_logger().info(f"angle : {angle}")
+        drive_msg = SpeedDirection()
+        drive_msg.direction = angle/to_radians(20.0)
+        if drive_msg.direction < 0:
+            drive_msg.direction = max(-1.0, drive_msg.direction)
+        else:
+            drive_msg.direction = min(1.0, drive_msg.direction)
+        self.get_logger().info(f"drive direction {drive_msg.direction}")
+        # TODO check this
+        if (abs(drive_msg.direction) >= 0.0 and abs(drive_msg.direction) < 0.5):
+            drive_msg.speed = 0.1
+        elif (abs(drive_msg.direction) >= 0.5 and abs(drive_msg.direction) <= 1.0):
+            drive_msg.speed = 0.12
+        else:
+            drive_msg.speed = 0.04
+        self.pub.publish(drive_msg)
+
+    def scan_callback(self, scan_msg):
+        self.get_error(scan_msg, 0.4)
+        self.pid_control()
+
+def main(args=None):
+    rclpy.init(args=args)
+    wall_follow = WallFollow()
+    rclpy.spin(wall_follow)
+    rclpy.shutdown()
