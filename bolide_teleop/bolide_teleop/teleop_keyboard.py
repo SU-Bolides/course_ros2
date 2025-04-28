@@ -16,7 +16,10 @@ class KeyboardController(Node):
         super().__init__('teleop_node')
         self.get_logger().info("Teleop node started, Keyboard interrupt (ctrl+c will stop the node)")
 
-        self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
+        # create publish of speed and direction 
+        #self.speed_pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
+        self.speed_pub = self.create_publisher(Float32, '/cmd_speed', 10)
+        self.direction_pub = self.create_publisher(Float32, '/cmd_direction', 10)
 
         #self.timer = self.create_timer(0.4, self.timer_callback) --> self.timer_callback will be called every 0.4s which means that periodic commands will be sent to the system so that we can't do the emergency_stop due to the presence of these commands 
         # init speed and direction
@@ -31,10 +34,18 @@ class KeyboardController(Node):
     #def timer_callback(self):
         #self.publish_speed_direction()
 
-    def publish_speed_direction(self):
+    # def publish_speed_direction(self):
+    #     print("publish curr_speed = ", self.current_speed)
+    #     print("publish curr_direction = ", self.current_direction)
+    #     self.pub.publish(SpeedDirection(speed=self.current_speed, direction=self.current_direction))
+
+    def publish_speed(self):
         print("publish curr_speed = ", self.current_speed)
+        self.speed_pub.publish(Float32(data=self.current_speed))
+
+    def publish_direction(self):
         print("publish curr_direction = ", self.current_direction)
-        self.pub.publish(SpeedDirection(speed=self.current_speed, direction=self.current_direction))
+        self.direction_pub.publish(Float32(data=self.current_direction))
 
     def on_key_press(self, in_key):
         key = self.get_key_char(in_key)
@@ -70,34 +81,36 @@ class KeyboardController(Node):
                 self.current_speed += 0.05 * coeff
             else:
                 self.current_speed = 0.05 * coeff
+            self.publish_speed()
         elif action == 'DOWN':
             if self.current_speed > -0.05 * coeff:
                 self.current_speed -= 0.05 * coeff
             else:
                 self.current_speed = -0.05 * coeff
+            self.publish_speed()
         elif action == 'LEFT':
-            if abs(self.current_speed)<0.01:
-                self.current_speed = 0.0
             if self.current_direction > -1.0:
                 self.current_direction -= 1.0
             else:
                 self.current_direction = -1.0
+            self.publish_direction()
         elif action == 'RIGHT':
-            if abs(self.current_speed)<0.01:
-                self.current_speed = 0.0
             if self.current_direction < 1.0:
                 self.current_direction += 1.0
             else:
                 self.current_direction = 1.0
+            self.publish_direction()
         elif action == 'BRAKE':
             self.current_speed = 2.0 * coeff
+            self.publish_speed()
         elif action == 'QUIT':
             exit()
         elif action == 'NEUTRAL':
             self.current_speed = 0.0
+            self.publish_speed()
         else:
             self.get_logger().warn(f"Unknown action: {action}")
-        self.publish_speed_direction()
+        #self.publish_speed_direction()
 
 
 def main(args=None):
