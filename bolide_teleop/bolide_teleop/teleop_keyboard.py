@@ -21,7 +21,7 @@ class KeyboardController(Node):
         self.speed_pub = self.create_publisher(Float32, '/cmd_speed', 10)
         self.direction_pub = self.create_publisher(Float32, '/cmd_direction', 10)
 
-        #self.timer = self.create_timer(0.4, self.timer_callback) --> self.timer_callback will be called every 0.4s which means that periodic commands will be sent to the system so that we can't do the emergency_stop due to the presence of these commands 
+        self.timer = self.create_timer(0.4, self.timer_callback) #--> self.timer_callback will be called every 0.4s which means that periodic commands will be sent to the system so that we can't do the emergency_stop due to the presence of these commands 
         # init speed and direction
         self.current_speed = 0.0
         self.current_direction = 0.0
@@ -31,8 +31,9 @@ class KeyboardController(Node):
         key_mapping_str = '\n'.join([f'\t{key}: {value}' for key, value in self.key_mapping.items()])
         print(f"Key control mapping:\n{key_mapping_str}\n")
 
-    #def timer_callback(self):
-        #self.publish_speed_direction()
+    def timer_callback(self):
+        self.publish_speed()
+        self.publish_direction()
 
     # def publish_speed_direction(self):
     #     print("publish curr_speed = ", self.current_speed)
@@ -65,14 +66,14 @@ class KeyboardController(Node):
         else:
             return key
 
-    def perform_action(self,action, coeff=1.0):
-        # mykey = click.getchar() 
+    def perform_action(self, coeff=1.0):
+        mykey = click.getchar() 
         
         # This getchar() is blocking : if the user does not press a key, nothing happens
         # even the timer does not work correctly (because the main thread is blocked on 
         # the keyboard and the spin() is on another thread)
         
-        # action = self.key_mapping[mykey]
+        action = self.key_mapping[mykey]
 
         if action == '':
             coeff = 0.0
@@ -81,36 +82,37 @@ class KeyboardController(Node):
                 self.current_speed += 0.05 * coeff
             else:
                 self.current_speed = 0.05 * coeff
-            self.publish_speed()
+            # self.publish_speed()
         elif action == 'DOWN':
             if self.current_speed > -0.05 * coeff:
                 self.current_speed -= 0.05 * coeff
             else:
                 self.current_speed = -0.05 * coeff
-            self.publish_speed()
+            # self.publish_speed()
         elif action == 'LEFT':
             if self.current_direction > -1.0:
                 self.current_direction -= 1.0
             else:
                 self.current_direction = -1.0
-            self.publish_direction()
+            # self.publish_direction()
         elif action == 'RIGHT':
             if self.current_direction < 1.0:
                 self.current_direction += 1.0
             else:
                 self.current_direction = 1.0
-            self.publish_direction()
+            # self.publish_direction()
         elif action == 'BRAKE':
             self.current_speed = 2.0 * coeff
-            self.publish_speed()
+            # self.publish_speed()
         elif action == 'QUIT':
             exit()
         elif action == 'NEUTRAL':
             self.current_speed = 0.0
-            self.publish_speed()
+            # self.publish_speed()
         else:
             self.get_logger().warn(f"Unknown action: {action}")
-        #self.publish_speed_direction()
+        # self.publish_speed()
+        # self.publish_direction()
 
 
 def main(args=None):
@@ -119,15 +121,19 @@ def main(args=None):
     thread = threading.Thread(target=rclpy.spin, args=(controller, ), daemon=True)
     thread.start()
 
-    try:
-        while True:
-            key=click.getchar()
-            controller.on_key_press(key)#perform_action()
-    except KeyboardInterrupt:
-        controller.get_logger().info("Shutting down teleop")
-    finally:
-        controller.destroy_node()
-        rclpy.shutdown()
+    while True:
+        controller.perform_action()
+    controller.destroy_node()
+    rclpy.shutdown()
+    # try:
+    #     while True:
+    #         # key=click.getchar()
+    #         controller.perform_action()
+    # except KeyboardInterrupt:
+    #     controller.get_logger().info("Shutting down teleop")
+    # finally:
+    #     controller.destroy_node()
+    #     rclpy.shutdown()
 
 if __name__ == '__main__':
 	main()
