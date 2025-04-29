@@ -67,7 +67,7 @@ class WallFollow(Node):
         angle = 0.0
         if self.prev_t == 0:
             return
-        angle = self.kp * self.error + self.ki * self.integral * (self.curr_t - self.start_t) + self.kd * (self.error)/(self.curr_t - self.prev_t)
+        angle = self.kp * self.error + self.ki * self.integral * (self.curr_t - self.start_t) + self.kd * (self.error - self.prev_error)/(self.curr_t - self.prev_t)
         self.get_logger().info(f"angle : {angle}")
         drive_msg = SpeedDirection()
         drive_msg.direction = angle/to_radians(100.0)
