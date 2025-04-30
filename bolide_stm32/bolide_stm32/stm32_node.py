@@ -76,7 +76,6 @@ class STM32_Parser(Node):
         self.imu_data.linear_acceleration_covariance = [1e-1, 0, 0, 0, 0, 0, 0, 0, 0]
         self.imu_data.orientation_covariance = [0, 0, 0, 0, 0, 0, 0, 0, 1e-2]
         self.imu_data.header.frame_id = "base_link"
-        
 
         # Transmitter
         self.tx_buffer = [0] * 8  # data that we'll transmit to the STM32
@@ -156,26 +155,26 @@ class STM32_Parser(Node):
             ##########################  RANGES  #############################
 
             # Left ====================================
-            IR_rear_left = self.ir_gauche/1000.0 # conversion mV --> V
-            if(IR_rear_left):
-                IR_rear_left = 15.38/IR_rear_left - 0.42 # conversion V --> cm
+            IR_rear_left = self.ir_gauche/1000.0  # conversion mV --> V
+            if IR_rear_left:
+                IR_rear_left = 15.38/IR_rear_left - 0.42  # conversion V --> cm
             else:
-                IR_rear_left = self.ir_max_range*100. #because we convert in m later
+                IR_rear_left = self.ir_max_range*100.  # because we convert in m later
             # using component datasheet
             # ... and with a bit of experimentation and test to adapt the value
-            IR_rear_left /= 100 # conversion cm --> m
-            IR_rear_left = min(max(IR_rear_left,0), self.ir_max_range)
+            IR_rear_left /= 100  # conversion cm --> m
+            IR_rear_left = min(max(IR_rear_left, 0), self.ir_max_range)
 
             # Right ===================================
-            IR_rear_right = self.ir_droit/1000. # conversion mV --> V
-            if(IR_rear_right):
-                IR_rear_right = 15.38/IR_rear_right - 0.42 # using component datasheet
+            IR_rear_right = self.ir_droit/1000.  # conversion mV --> V
+            if IR_rear_right:
+                IR_rear_right = 15.38/IR_rear_right - 0.42  # using component datasheet
             else:
-                IR_rear_right = self.ir_max_range*100. #because we convert in m later
+                IR_rear_right = self.ir_max_range*100.  # because we convert in m later
             # using component datasheet
             # ... and with a bit of experimentation and test to adapt the value
-            IR_rear_right = IR_rear_right/100. # conversion cm --> m
-            IR_rear_right = min(max(IR_rear_right,0), self.ir_max_range)
+            IR_rear_right = IR_rear_right/100.  # conversion cm --> m
+            IR_rear_right = min(max(IR_rear_right, 0), self.ir_max_range)
 
             # self.multi_range_frame.Sonar_rear.range = Sonar_rear
             # self.multi_range_frame.Sonar_rear.header.stamp = rospy.Time.now()
@@ -218,5 +217,6 @@ def main(args=None):
     rclpy.shutdown()
     thread.join()
 
+
 if __name__ == '__main__':
-	main()
+    main()
