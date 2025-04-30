@@ -14,14 +14,18 @@ from bolide_interfaces.msg import SpeedDirection
 class KeyboardController(Node):
     def __init__(self):
         super().__init__('teleop_node')
-        self.get_logger().info("Teleop node started, Keyboard interrupt (ctrl+c will stop the node)")
+        self.get_logger().info("[INFO] -- Teleop node started, Keyboard interrupt (ctrl+c) will stop the node")
 
-        # create publish of speed and direction 
-        self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
-        # self.speed_pub = self.create_publisher(Float32, '/cmd_speed', 10)
-        # self.direction_pub = self.create_publisher(Float32, '/cmd_direction', 10)
+        # A debug bool to print or no the data
+        self.debug = False
 
-        self.timer = self.create_timer(0.4, self.timer_callback) #--> self.timer_callback will be called every 0.4s which means that periodic commands will be sent to the system so that we can't do the emergency_stop due to the presence of these commands 
+        # create publish of speed and direction
+        # self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
+        self.speed_pub = self.create_publisher(Float32, '/cmd_vel', 10)
+        self.direction_pub = self.create_publisher(Float32, '/cmd_dir', 10)
+
+        self.timer = self.create_timer(0.4, self.timer_callback)
+
         # init speed and direction
         self.current_speed = 0.0
         self.current_direction = 0.0
@@ -32,19 +36,10 @@ class KeyboardController(Node):
         print(f"Key control mapping:\n{key_mapping_str}\n")
 
     def timer_callback(self):
-        self.publish_speed_direction()
-
-    def publish_speed_direction(self):
-        print("publish curr_speed = ", self.current_speed)
-        print("publish curr_direction = ", self.current_direction)
-        self.pub.publish(SpeedDirection(speed=self.current_speed, direction=self.current_direction))
-
-    def publish_speed(self):
-        print("publish curr_speed = ", self.current_speed)
+        if self.debug:
+            self.get_logger().debug(f"[DEBUG] -- current speed = {self.current_speed}")
+            self.get_logger().debug(f"[DEBUG] -- current direction = {self.current_direction}")
         self.speed_pub.publish(Float32(data=self.current_speed))
-
-    def publish_direction(self):
-        print("publish curr_direction = ", self.current_direction)
         self.direction_pub.publish(Float32(data=self.current_direction))
 
     def on_key_press(self, in_key):
@@ -66,12 +61,8 @@ class KeyboardController(Node):
             return key
 
     def perform_action(self, coeff=1.0):
-        mykey = click.getchar() 
-        
-        # This getchar() is blocking : if the user does not press a key, nothing happens
-        # even the timer does not work correctly (because the main thread is blocked on 
-        # the keyboard and the spin() is on another thread)
-        
+        mykey = click.getchar()
+
         action = self.key_mapping[mykey]
 
         if action == '':
@@ -81,37 +72,29 @@ class KeyboardController(Node):
                 self.current_speed += 0.05 * coeff
             else:
                 self.current_speed = 0.05 * coeff
-            # self.publish_speed()
         elif action == 'DOWN':
             if self.current_speed > -0.05 * coeff:
                 self.current_speed -= 0.05 * coeff
             else:
                 self.current_speed = -0.05 * coeff
-            # self.publish_speed()
         elif action == 'LEFT':
             if self.current_direction > -1.0:
                 self.current_direction -= 1.0
             else:
                 self.current_direction = -1.0
-            # self.publish_direction()
         elif action == 'RIGHT':
             if self.current_direction < 1.0:
                 self.current_direction += 1.0
             else:
                 self.current_direction = 1.0
-            # self.publish_direction()
         elif action == 'BRAKE':
             self.current_speed = 2.0 * coeff
-            # self.publish_speed()
         elif action == 'QUIT':
             exit()
         elif action == 'NEUTRAL':
             self.current_speed = 0.0
-            # self.publish_speed()
         else:
             self.get_logger().warn(f"Unknown action: {action}")
-        # self.publish_speed()
-        # self.publish_direction()
 
 
 def main(args=None):
@@ -124,15 +107,7 @@ def main(args=None):
         controller.perform_action()
     controller.destroy_node()
     rclpy.shutdown()
-    # try:
-    #     while True:
-    #         # key=click.getchar()
-    #         controller.perform_action()
-    # except KeyboardInterrupt:
-    #     controller.get_logger().info("Shutting down teleop")
-    # finally:
-    #     controller.destroy_node()
-    #     rclpy.shutdown()
+
 
 if __name__ == '__main__':
-	main()
+    main()
