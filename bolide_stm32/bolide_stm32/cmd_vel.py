@@ -46,39 +46,28 @@ class CommandSpeed(Node):
         self.safety_timeout = 0.5
         self.last_command_time = self.get_clock().now()
 
-        self.sub = self.create_subscription(SpeedDirection, "/cmd_vel", self.cmd_callback, 10)
-        # self.sub = self.create_subscription(Float32, "/cmd_speed", self.cmd_callback, 10)
+        self.sub = self.create_subscription(Float32, "/cmd_vel", self.cmd_callback, 10)
         self.stm32_publish = self.create_publisher(Int16, "/stm32_data", 10)
 
-        # TEST SECURITY CHECK -- TODO test it
-        # Unique Timer for the security 
+        # Unique Timer for the security
         self.timer_safety = self.create_timer(1.0, self.emergency_stop, autostart=False)
 
         self.init = 1
 
     def cmd_callback(self, data):
-        self.timer_safety.cancel()
-        # self.timer_safety = self.create_timer(0.75, self.emergency_stop)  # <-- redémarrage du timer
-        self.cmd_velocity = data.speed #speed
-        if (not (get_sign(data.speed) == self.curr_dir)): #speed
+        self.timer_safety.cancel()  # cancel the brake timer
+        self.cmd_velocity = data.data
+        if (not (get_sign(self.cmd_velocity) == self.curr_dir)):
             if (not self.curr_dir) or (abs(self.curr_velocity_m_s) < self.DIR_VEL_THRESHOLD_M_S):
 
                 # We can command reverse while the car is going forwards
                 # However, the car needs to stop and then start reversing before it actually goes in reverse.
                 # So we only switch the sign if the car is going slow enough to be considered "stationnary".
-                self.curr_dir = get_sign(data.speed) #speed 
-                # rospy.loginfo("Switched direction (speed sign): %s", str(self.curr_dir))
+                self.curr_dir = get_sign(self.cmd_velocity)
 
-        # Update the last command time
-        # self.last_command_time = self.get_clock().now()
-        self.timer_safety.reset() # les objets Timer dans ROS 2 (rclpy) n'ont pas de méthode .restart()
+        # Update the last command time and reset the brake timer
+        self.timer_safety.reset()
         self.command(self.cmd_velocity)
-
-    def check_emergency_stop(self):
-        # now = self.get_clock().now()
-        # time_elapsed=(now-self.last_command_time).nanoseconds*1e-9 # Convert ns -> s
-        # if time_elapsed > self.safety_timeout:
-        self.emergency_stop()
 
     def emergency_stop(self):
         self.get_logger().warn("Emergency stop triggered due to timeout.")
@@ -120,7 +109,7 @@ class CommandSpeed(Node):
         # The esc period is 20000 ns, and we send the actual pulse duration to the stm32. We also convert from RPi to "true".
 
         if rclpy.ok() and self.debug:
-            print("Tx_data = ", self.tx_data)
+            self.get_logger().debug(f"[DEBUG] -- Tx_data = {self.tx_data}")
         self.stm32_publish.publish(self.tx_data)
 
 
@@ -132,5 +121,6 @@ def main(args=None):
     except Exception as e:
         print(f"Error in Command Speed : {e}")
 
+
 if __name__ == '__main__':
-	main()
+    main()
