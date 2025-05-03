@@ -41,9 +41,13 @@ vir
 
 On the terminal check the connection of all USB devices (Lidar and Dynamixel) with :
 ```shell
-ls /dev/ttyUSB*
+ls /dev/ttyUSBU2D2
 ```
-if you see /dev/ttyU2D2 and /dev/ttyLIDAR, it's all good, else check the connections.
+and :
+```shell
+ls /dev/ttyLIDAR
+```
+if you see them, it's all good, else check the connections.
 
 Now on the terminal type :
 ```shell
@@ -69,6 +73,7 @@ To access in a python file, you need to import the package (e.g from bolide_inte
 ### Bolide Direction
 The direction of the car is controlled by a Dynamixel plug with a U2D2 connector to the Raspberry Pi. The package [bolide_direction](./bolide_direction/) have a node subscribed to a SpeedDirection message, and send to the dynamixel the angle value needed. The angle is limited by the turning mechanism of the car, so we set a maximum steering angle of 15.5 degrees. To facilitate the process, the direction value of the SpeedDirection message is include in [-1, 1].
 The U2D2 port is dynamically connect with the port /dev/ttyU2D2 so you don't need to change the DEVICENAME after every reboot of the car.
+**If you want to add this dynamic connection on a new RPi5, please see the [tutorials](Tutorials.md)**
 
 ### Bolide STM32
 The STM32 is the micro-controller connected to the rest of the sensors and the propulsion motor.
@@ -97,4 +102,9 @@ The teleop with the keyboard got a incrementation system so if you're backward a
 By doing a teleop with a controller (PS4 controller by exemple) we'll be able to use analogical values and the command will be smoother.
 
 ### Sllidar
-This package is the official package for our lidar. We use here the sllidar_node to get the data of the lidar. To connect it use the dynamic link /dev/ttyLIDAR to assure the good connection.
+This package is the official package for our lidar. We use here the sllidar_node to get the data of the lidar. 
+
+**We never change this package, if you want to process the data of the lidar, please see if in the High-Level repository there is a package for the lidar or create your own package in it.**
+
+To connect it use the dynamic link /dev/ttyLIDAR to assure the good connection.
+**If you want to add this dynamic connection on a new RPi5, please see the [tutorials](Tutorials.md)**

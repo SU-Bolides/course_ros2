@@ -2,6 +2,9 @@
 This file contains a bunch of tutorial for the car or ROS2, it's a good idea to read it once and go there if you have doubt on something
 
 - [Tutorials](#tutorials)
+    - [Create a dynamic connection for USB devices](#create-a-dynamic-connection-for-usb-devices)
+    - [Find idVendor and idProduct of a device](#find-idvendor-and-idproduct-of-a-device)
+      - [Create a udev-rule file](#create-a-udev-rule-file)
     - [Create a Package](#create-a-package)
       - [Name and use of the package](#name-and-use-of-the-package)
       - [Creation of a package](#creation-of-a-package)
@@ -18,6 +21,30 @@ This file contains a bunch of tutorial for the car or ROS2, it's a good idea to 
 
 
 ---
+### Create a dynamic connection for USB devices
+Our car use (for now) two USB connection, one for the Lidar and another one for the Dynamixel motor (via U2D2). Normally, when a device is connected to the RPi5, a serial port is given for it. It will be /dev/ttyUSB* (with *, a given number). This port is needed to communicate with our devices in our codes. The problem is that at every reboot of our computer, the ports can changed and so we always need to chang eit in our codes. To counter this we will create a dynamical port for our devices based on their identity.
+### Find idVendor and idProduct of a device
+You will first need to have the idVendor and idProduct of your device, to do this you will type on the terminal :
+```shell
+lsusb
+```
+this will give you a list of device like :
+```yaml
+Bus 002 Device 003: ID 1234:5678 Manufacturer_Name Product_Name
+```
+Find you device and note the number after the 'ID' term.
+#### Create a udev-rule file
+A udev-rule file is a file with some commands that will be launch at every boot. To create it please type on a terminal :
+```shell
+sudo nano /etc/udev/rules.d/99-usb-device.rules
+```
+Then in the file write :
+```shell
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="5678", SYMLINK+="ttyDEVICE", MODE="0777"
+```
+You can quit the file with CTRL+O and CTRL+X to save and quit it. The reboot the RPi5.
+**We did this for the Lidar (ttyLIDAR) and the Dynamixel (ttyU2D2)**
+
 ### Create a Package
 If you want to transform a package from ROS to ROS2 or to add your own package, please follow these instructions correctly to avoid losing time and to keep a clean and clear environment. All these informations are mainly inspired by the official [tutorials](https://docs.ros.org/en/jazzy/Tutorials.html) of ROS2 (here jazzy distribution), that you followed at the beginning of the class.
 #### Name and use of the package
