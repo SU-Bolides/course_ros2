@@ -3,8 +3,8 @@
 <package format="3">
   <name>bolide_direction</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="baptiste.braun.delvoye@gmail.com">voiture</maintainer>
+  <description>The package to use the Dynamixel of the car for the direction</description>
+  <maintainer email="baptiste.braun.delvoye@gmail.com">bolide team</maintainer>
   <license>Apache-2.0</license>
 
   <test_depend>ament_copyright</test_depend>

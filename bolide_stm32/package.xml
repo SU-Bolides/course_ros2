@@ -3,8 +3,8 @@
 <package format="3">
   <name>bolide_stm32</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="baptiste.braun.delvoye@gmail.com">voiture</maintainer>
+  <description>The package to use the STM32 and the sensors and motors connected to it</description>
+  <maintainer email="baptiste.braun.delvoye@gmail.com">bolide team</maintainer>
   <license>Apache-2.0</license>
 
   <depend>rclpy</depend>

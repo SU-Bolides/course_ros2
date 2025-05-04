@@ -13,9 +13,9 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='voiture',
+    maintainer='bolide team',
     maintainer_email='baptiste.braun.delvoye@gmail.com',
-    description='TODO: Package description',
+    description='The package to use the Dynamixel of the car for the direction',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
