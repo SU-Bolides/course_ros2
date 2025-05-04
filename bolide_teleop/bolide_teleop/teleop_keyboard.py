@@ -7,35 +7,40 @@ from rclpy.executors import ExternalShutdownException
 from std_msgs.msg import Float32
 from bolide_interfaces.msg import SpeedDirection
 
-# TODO - Test incrementation
 # TODO - work on brake
 
 
 class KeyboardController(Node):
+    """ROS2 Class of the Keyboard control
+    """
     def __init__(self):
         super().__init__('teleop_node')
-        self.get_logger().info("[INFO] -- Teleop node started, Keyboard interrupt (ctrl+c) will stop the node")
+        self.get_logger().info("[INFO] -- Teleop node started, Keyboard interrupt (CTRL+C) will stop the node")
 
-        # A debug bool to print or no the data
+        # A debug bool to print or not the data
         self.debug = False
 
         # create publish of speed and direction
-        # self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
         self.speed_pub = self.create_publisher(Float32, '/cmd_vel', 10)
         self.direction_pub = self.create_publisher(Float32, '/cmd_dir', 10)
 
+        # Timer for the data
+        # TODO - check if we can reduce this time
         self.timer = self.create_timer(0.4, self.timer_callback)
 
         # init speed and direction
         self.current_speed = 0.0
         self.current_direction = 0.0
         self.key_mapping = {'\x1b[A': 'UP', '\x1b[B': 'DOWN',
-                            '\x1b[C': 'RIGHT', '\x1b[D': 'LEFT', 's': 'BRAKE', 'q': 'QUIT', 'n': 'NEUTRAL'}
+                            '\x1b[C': 'RIGHT', '\x1b[D': 'LEFT', 
+                            's': 'BRAKE', 'q': 'QUIT', 'n': 'NEUTRAL'}
 
         key_mapping_str = '\n'.join([f'\t{key}: {value}' for key, value in self.key_mapping.items()])
-        print(f"Key control mapping:\n{key_mapping_str}\n")
+        self.get_logger().info(f"[INFO] -- Key control mapping:\n{key_mapping_str}\n")
 
     def timer_callback(self):
+        """Callback function of the timer to publish data to speed and direction topics
+        """
         if self.debug:
             self.get_logger().debug(f"[DEBUG] -- current speed = {self.current_speed}")
             self.get_logger().debug(f"[DEBUG] -- current direction = {self.current_direction}")
@@ -61,6 +66,11 @@ class KeyboardController(Node):
             return key
 
     def perform_action(self, coeff=1.0):
+        """Perform action depending on the key pressed
+
+        Args:
+            coeff (float, optional): a simple coefficient. Defaults to 1.0.
+        """
         mykey = click.getchar()
 
         action = self.key_mapping[mykey]

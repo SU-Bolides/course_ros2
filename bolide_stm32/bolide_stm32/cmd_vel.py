@@ -57,7 +57,7 @@ class CommandSpeed(Node):
     def cmd_callback(self, data):
         self.timer_safety.cancel()  # cancel the brake timer
         self.cmd_velocity = data.data
-        if (not (get_sign(self.cmd_velocity) == self.curr_dir)):
+        if not get_sign(self.cmd_velocity) == self.curr_dir:
             if (not self.curr_dir) or (abs(self.curr_velocity_m_s) < self.DIR_VEL_THRESHOLD_M_S):
 
                 # We can command reverse while the car is going forwards

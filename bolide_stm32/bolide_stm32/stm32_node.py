@@ -13,15 +13,9 @@ from sensor_msgs.msg import Range, Imu
 from bolide_interfaces.msg import ForkSpeed, MultipleRange
 
 
-def spin_in_background():
-    executor = rclpy.get_global_executor()
-    try:
-        executor.spin()
-    except ExternalShutdownException:
-        pass
-
-
 class STM32_Parser(Node):
+    """ROS2 Class for the STM32
+    """
     def __init__(self):
         super().__init__('stm32_node')
 
@@ -62,7 +56,7 @@ class STM32_Parser(Node):
         self.fork_data = ForkSpeed()  # Fork message type (see bolide_interfaces)
 
         # Ultrasound sensor
-        self.distance_US = 0.  # distancefrom the ultrasound sensor
+        self.distance_US = 0.  # distance from the ultrasound sensor
 
         # IMU
         self.yaw = 0.  # twist around the z axis (vertical)
@@ -83,6 +77,12 @@ class STM32_Parser(Node):
         self.sensors_init()
 
     def get_command(self, msg: Int16):
+        """Subscriber Function to transform the message received\
+            for the speed to work with the controller
+
+        Args:
+            msg (Int16): the message
+        """
         command = []
         cmded_bytes = msg.data
         command.append((cmded_bytes >> 8) & 0xFF)
@@ -102,6 +102,10 @@ class STM32_Parser(Node):
     # Ideally we'd do all this in Cpp, but I don't think there is a spidev equivalent in Cpp, and it's
     # not like we're being limited by this script.
     def crc32mpeg2(self, buf, crc=0xffffffff):
+        """Definitely not the most efficient way of doing this,\
+            but we're transmitting 16 bytes so it's OK.
+        Ideally we'd do all this in Cpp, but I don't think there\
+            is a spidev equivalent in Cpp, and it's not like we're being limited by this script."""
         for val in buf:
             crc ^= val << 24
             for _ in range(8):
@@ -133,6 +137,8 @@ class STM32_Parser(Node):
         # self.multi_range_frame.Sonar_rear.max_range = self.sonar_max_range
 
     def receiveSensorData(self):
+        """Function to receive sensors' data from the STM32 and convert it to publish them
+        """
         self.spi.writebytes(self.tx_buffer)
         data = self.spi.readbytes(20)
         # data = self.spi.xfer2([0x45]*20)  # SPI happens simultaneously, so we need to send to receive.
