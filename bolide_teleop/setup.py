@@ -24,7 +24,6 @@ setup(
     entry_points={
         'console_scripts': [
             'teleop_keyboard=bolide_teleop.teleop_keyboard:main',
-            'wall_follow=bolide_teleop.wall_follow_node:main',
         ],
     },
 )
