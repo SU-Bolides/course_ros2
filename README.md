@@ -94,8 +94,8 @@ The reception of the sensors data are in the [stm32_node](./bolide_stm32/bolide_
 
 The micro-controller is also use to send the PWM to the propulsion motor. The [cmd_vel](./bolide_stm32/bolide_stm32/cmd_vel.py) node is a simply node sending the desired PWM value. We send it a cmd value $\in[-1, 1]\cup{2}$ where:
 - $cmd = 0$ is the neutral mode, the car is on free wheel and will not stop immediately
-- $0.2 < cmd < 1$ is forward
-- $-1 < cmd <-0.2$ is backward
+- $0.01 <= cmd < 1$ is forward
+- $-1 < cmd <=-0.01$ is backward
 - $cmd = 2$ is brake, here the motor will block the rotation of the wheels
 **AVOID TO USE 1 and -1 as value, it will decrease the voltage of the RPi5 and shut it off**. To fix this problem we'll need to add a second battery (one for the motors and the other for the RPi5 and other stuffs).
 The [stm32_node](./bolide_stm32/bolide_stm32/stm32_node.py) receive the PWM value and will send it to the motor by the D9 pin (if you want to check the value). The PWM value will after be read by the ESC that will send it to the motor. If you think that the ESC is not working correctly please use the [esc_setup.py](TODO file code) code to set it up and read the md file to follow correctly the instructions. TODO 
