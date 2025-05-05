@@ -29,14 +29,11 @@ Please, talking of GitHub, use it correctly ! Commit every change to keep a trac
 **You are a group so work together**, be sure that everyone are following your plan and not doing everything that they want. You will normally have two cars, it means that you can divide your group in two little groups and work on something different to be faster. The race comes really fast so at the beginning you need to fix what you want for it.
 
 ## Launching the car (for now)
+Every packages (except bolide_interfaces) are build with symlink so you need to change code only without building them every time, except if it is on a new RPi.
 **Never forget to build on your workspace folder and not your src folder !**
-When the car is on, connect with ssh (you have to know its ip address before), or branch it to a display. Normally we add some lines in the .bashrc file so when you open a terminal it will be automatically on the workspace folder and all sourced up. If you need to source after a colcon build just type :
+When the car is on, connect with ssh (you have to know its ip address before), or branch it to a display. Normally we add some lines in the .bashrc file so when you open a terminal it will be automatically on the workspace folder and all sourced up. If you need to source after a modification just type :
 ```shell
 srcw
-```
-And to open the virtual environment just type :
-```shell
-vir
 ```
 
 On the terminal check the connection of all USB devices (Lidar and Dynamixel) with :
@@ -49,31 +46,38 @@ ls /dev/ttyLIDAR
 ```
 if you see them, it's all good, else check the connections.
 
-Now on the terminal type :
+Now on the terminal type to launch the teleoperation :
 ```shell
 ros2 launch bolide_teleop teleop_keyboard.launch
 ```
 
 You will be able to move the car with the arrows of your keyboard.
 
+If you want to launch the wall follower:
+```shell
+ros2 launch bolide_wall_follow wall_follow.launch.py
+```
+For more details please see [this](https://github.com/SU-Bolides/high_level_ros2).
+
 ## Low level nodes
-This repository contains only the low level code for the car and a simple teleop package. Please use another repository to create High-level nodes like a controller for the position, transformation of raw data or a SLAM mechanism.
+This repository contains only the low level code for the car and a simple teleop package. Please use this [repository](https://github.com/SU-Bolides/high_level_ros2) to add some high-level packages like PID process, SLAM, or data processing.
 
 Normally if we're brave enough, we will try to add a README to all packages, so if you want to have a better explanation of a point try in its folder or code.
 
 ### Bolide Interfaces
-The [package](./bolide_interfaces/) containing all Messages and Services created for the car. For now, we mainly use messages between topics, the messages are :
+The [package](./bolide_interfaces/) containing all Messages and Services created for the car. For now, we only use the ForkSpeed message for the fork data, the messages are :
 - **ForkSpeed** composed of a header and a float32 value corresponding to the speed measures by the fork
 - **MultipleRange** composed of 3 Ranges (from std_msgs). One for the Rear left Infrared sensors, one for the right and the last for the Sonar (not used for now)
 - **SpeedDirection** composed of two float64 values, one for the speed of the robot and the other for the direction. Both are between -1 and 1.
+
 To access in a python file, you need to import the package (e.g from bolide_interfaces/msg import SpeedDirection)
 
 **If you want to create a Message or a Service for the car please put it in this package and this package only**
 
 ### Bolide Direction
-The direction of the car is controlled by a Dynamixel plug with a U2D2 connector to the Raspberry Pi. The package [bolide_direction](./bolide_direction/) have a node subscribed to a SpeedDirection message, and send to the dynamixel the angle value needed. The angle is limited by the turning mechanism of the car, so we set a maximum steering angle of 15.5 degrees. To facilitate the process, the direction value of the SpeedDirection message is include in [-1, 1].
+The direction of the car is controlled by a Dynamixel plug with a U2D2 connector to the Raspberry Pi. The package [bolide_direction](./bolide_direction/) have a node subscribed to a SpeedDirection message, and send to the dynamixel the angle value needed. The angle is limited by the turning mechanism of the car, so we set a maximum steering angle of 15.5 degrees. To facilitate the process, the direction value is include in [-1, 1].
 The U2D2 port is dynamically connect with the port /dev/ttyU2D2 so you don't need to change the DEVICENAME after every reboot of the car.
-**If you want to add this dynamic connection on a new RPi5, please see the [tutorials](Tutorials.md)**
+**If you want to add this dynamic connection on a new RPi5, please see the [tutorials](Tutorials.md#create-a-dynamic-connection-for-usb-devices)**
 
 ### Bolide STM32
 The STM32 is the micro-controller connected to the rest of the sensors and the propulsion motor.
@@ -98,11 +102,18 @@ The [stm32_node](./bolide_stm32/bolide_stm32/stm32_node.py) receive the PWM valu
 
 ### Bolide Teleop
 This package is for controlling the car manually. For now there is a simple keyboard [teleoperation](./bolide_teleop/bolide_teleop/teleop_keyboard.py) where you can use the arrow of your keyboard to move the car. If you want to add another teleoperation node with a controller or something else, put it here.
-The teleop with the keyboard got a incrementation system so if you're backward and you want to go forward you will need to press twice the up arrow. By doing this we assure that we pass by the neutral mode, it is mandatory if you want to avoid crashes of the car.
+The teleop with the keyboard got a incrementation system so if you're backward and you want to go forward you will need to press twice the up arrow. By doing this we assure that we pass by the neutral mode, it is mandatory if you want to avoid crashes of the car. But, to pass from forward to backward you need to press 'n' before, then press one or two times on the Key down Arrow.
 By doing a teleop with a controller (PS4 controller by exemple) we'll be able to use analogical values and the command will be smoother.
 
 ### Sllidar
-This package is the official package for our lidar. We use here the sllidar_node to get the data of the lidar. 
+This package is the official package for our lidar. We use here the sllidar_node to get the data of the lidar. It is a gt submodule, so after cloning the repository you'll need to type :
+```shell
+git submodule init
+```
+Then:
+```shell
+git submodule update
+```
 
 **We never change this package, if you want to process the data of the lidar, please see if in the High-Level repository there is a package for the lidar or create your own package in it.**
 

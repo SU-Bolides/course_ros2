@@ -3,7 +3,7 @@ This file contains a bunch of tutorial for the car or ROS2, it's a good idea to 
 
 - [Tutorials](#tutorials)
     - [Create a dynamic connection for USB devices](#create-a-dynamic-connection-for-usb-devices)
-    - [Find idVendor and idProduct of a device](#find-idvendor-and-idproduct-of-a-device)
+      - [Find idVendor and idProduct of a device](#find-idvendor-and-idproduct-of-a-device)
       - [Create a udev-rule file](#create-a-udev-rule-file)
     - [Create a Package](#create-a-package)
       - [Name and use of the package](#name-and-use-of-the-package)
@@ -23,7 +23,7 @@ This file contains a bunch of tutorial for the car or ROS2, it's a good idea to 
 ---
 ### Create a dynamic connection for USB devices
 Our car use (for now) two USB connection, one for the Lidar and another one for the Dynamixel motor (via U2D2). Normally, when a device is connected to the RPi5, a serial port is given for it. It will be /dev/ttyUSB* (with *, a given number). This port is needed to communicate with our devices in our codes. The problem is that at every reboot of our computer, the ports can changed and so we always need to chang eit in our codes. To counter this we will create a dynamical port for our devices based on their identity.
-### Find idVendor and idProduct of a device
+#### Find idVendor and idProduct of a device
 You will first need to have the idVendor and idProduct of your device, to do this you will type on the terminal :
 ```shell
 lsusb
