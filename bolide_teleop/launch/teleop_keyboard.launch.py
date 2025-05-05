@@ -36,6 +36,9 @@ def generate_launch_description():
             executable='cmd_vel',
             name='cmd_vel',
             output='screen',
+            parameters=[
+                {'minimal_speed' : 8.3}
+            ],
             respawn=True
         ),
         Node(

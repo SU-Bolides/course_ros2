@@ -26,7 +26,7 @@ class KeyboardController(Node):
 
         # Timer for the data
         # TODO - check if we can reduce this time
-        self.timer = self.create_timer(0.4, self.timer_callback)
+        self.timer = self.create_timer(0.1, self.timer_callback)
 
         # init speed and direction
         self.current_speed = 0.0
@@ -79,7 +79,7 @@ class KeyboardController(Node):
             coeff = 0.0
         if action == 'UP':
             if self.current_speed < 0.05 * coeff:
-                self.current_speed += 0.05 * coeff
+                self.current_speed = 0.015#0.0200000004842879 * coeff
             else:
                 self.current_speed = 0.05 * coeff
         elif action == 'DOWN':

@@ -1,4 +1,5 @@
 from math import pi, cos, sin, atan, isnan
+import time
 
 import rclpy
 from rclpy.node import Node
@@ -6,7 +7,7 @@ from rclpy.node import Node
 from bolide_interfaces.msg import SpeedDirection
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry
-# from ackermann_msgs.msg import AckermannDriveStamped
+from std_msgs.msg import Float32
 
 # HELPERS FUNCTIONS
 
@@ -44,7 +45,9 @@ class WallFollow(Node):
         self.prev_t = 0.0
 
         # PUBLISHER AND SUBSCRIBER
-        self.pub = self.create_publisher(SpeedDirection, '/cmd_vel', 10)
+        self.pub_speed = self.create_publisher(Float32, '/cmd_vel', 10)
+        self.pub_dir = self.create_publisher(Float32, '/cmd_dir', 10)
+
         self.sub = self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)
 
     def get_error(self, scan_msg, dist):
@@ -64,29 +67,32 @@ class WallFollow(Node):
             self.start_t = self.curr_t
         self.get_logger().info(f"error is {self.error}, a {a} et b {b}")
     def pid_control(self):
+        a = time.time()
         angle = 0.0
         if self.prev_t == 0:
             return
         angle = self.kp * self.error + self.ki * self.integral * (self.curr_t - self.start_t) + self.kd * (self.error - self.prev_error)/(self.curr_t - self.prev_t)
         self.get_logger().info(f"angle : {angle}")
-        drive_msg = SpeedDirection()
-        drive_msg.direction = angle/to_radians(15.0))
-        if drive_msg.direction < 0:
-            drive_msg.direction = max(-1.0, drive_msg.direction)
+        drive_msg = Float32()
+        speed_msg = Float32()
+        drive_msg.data = angle/to_radians(15.0)
+        if drive_msg.data < 0:
+            drive_msg.data = max(-1.0, drive_msg.data)
         else:
-            drive_msg.direction = min(1.0, drive_msg.direction)
-        self.get_logger().info(f"drive direction {drive_msg.direction}")
+            drive_msg.data = min(1.0, drive_msg.data)
+        self.get_logger().info(f"drive direction {drive_msg.data}")
         # TODO check this
-        if (abs(drive_msg.direction) >= 0.0 and abs(drive_msg.direction) < 0.5):
-            drive_msg.speed = 0.1
-        elif (abs(drive_msg.direction) >= 0.5 and abs(drive_msg.direction) <= 1.0):
-            drive_msg.speed = 0.12
+        if (abs(drive_msg.data) >= 0.0 and abs(drive_msg.data) < 0.5):
+            speed_msg.data = 0.1
+        elif (abs(drive_msg.data) >= 0.5 and abs(drive_msg.data) <= 1.0):
+            speed_msg.data = 0.12
         else:
-            drive_msg.speed = 0.04
-        self.pub.publish(drive_msg)
+            speed_msg.data = 0.05
+        self.pub_dir.publish(drive_msg)
+        self.pub_speed.publish(speed_msg)
 
     def scan_callback(self, scan_msg):
-        self.get_error(scan_msg, 0.4)
+        self.get_error(scan_msg, 0.8)
         self.pid_control()
 
 def main(args=None):
