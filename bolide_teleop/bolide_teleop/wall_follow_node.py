@@ -32,10 +32,16 @@ class WallFollow(Node):
     def __init__(self):
         super().__init__("wall_follow")
 
+        # PARAMETERS
+        self.declare_parameter('kp', 14.0)
+        self.declare_parameter('ki', 0.0)
+        self.declare_parameter('kd', 1.0)
+
+
         # PID CONTROL PARAMS
-        self.kp = 14.0
-        self.ki = 0.001
-        self.kd = 1.0
+        self.kp = self.get_parameter('kp').get_parameter_value().double_value
+        self.ki = self.get_parameter('ki').get_parameter_value().double_value
+        self.kd = self.get_parameter('kd').get_parameter_value().double_value
         self.servo_offset = 0.0
         self.prev_error = 0.0
         self.error = 0.0

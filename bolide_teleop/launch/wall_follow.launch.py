@@ -50,6 +50,11 @@ def generate_launch_description():
             executable='wall_follow',
             name='wall_follow',
             output='screen',
+            parameters=[
+                {'kp': 14.0},
+                {'ki': 0.0},
+                {'kd': 1.0}
+            ],
             respawn=True
         ),
     ])
