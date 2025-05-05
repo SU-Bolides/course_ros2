@@ -33,9 +33,9 @@ class WallFollow(Node):
         super().__init__("wall_follow")
 
         # PID CONTROL PARAMS
-        self.kp = 8.0
-        self.ki = 0.000
-        self.kd = 0.5
+        self.kp = 14.0
+        self.ki = 0.001
+        self.kd = 1.0
         self.servo_offset = 0.0
         self.prev_error = 0.0
         self.error = 0.0
