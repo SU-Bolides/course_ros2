@@ -31,9 +31,15 @@ class KeyboardController(Node):
         # init speed and direction
         self.current_speed = 0.0
         self.current_direction = 0.0
-        self.key_mapping = {'\x1b[A': 'UP', '\x1b[B': 'DOWN',
-                            '\x1b[C': 'RIGHT', '\x1b[D': 'LEFT', 
-                            's': 'BRAKE', 'q': 'QUIT', 'n': 'NEUTRAL'}
+        self.key_mapping = {
+            '\x1b[A': 'UP',     
+            '\x1b[B': 'DOWN',
+            '\x1b[C': 'RIGHT',
+            '\x1b[D': 'LEFT', 
+            's': 'BRAKE', 
+            'q': 'QUIT', 
+            'n': 'NEUTRAL'
+        }
 
         key_mapping_str = '\n'.join([f'\t{key}: {value}' for key, value in self.key_mapping.items()])
         self.get_logger().info(f"[INFO] -- Key control mapping:\n{key_mapping_str}\n")
@@ -80,7 +86,7 @@ class KeyboardController(Node):
             coeff = 0.0
         if action == 'UP':
             if self.current_speed < 0.05 * coeff:
-                self.current_speed = 0.015#0.0200000004842879 * coeff
+                self.current_speed = 0.015 #0.0200000004842879 * coeff
             else:
                 self.current_speed = 0.05 * coeff
         elif action == 'DOWN':
