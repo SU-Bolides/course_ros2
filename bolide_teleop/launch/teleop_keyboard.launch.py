@@ -37,7 +37,7 @@ def generate_launch_description():
             name='cmd_vel',
             output='screen',
             parameters=[
-                {'minimal_speed' : 8.3}
+                {'minimal_speed' : 8.2}
             ],
             respawn=True
         ),

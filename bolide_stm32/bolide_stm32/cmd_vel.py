@@ -28,14 +28,13 @@ class CommandSpeed(Node):
         super().__init__('cmd_vel')
 
         self.init = 0
-        self.debug = False
-
+        self.debug = True
         self.MAXSPEED = 10
-        self.declare_parameter('minimal_speed', 8.3)
-        # self.MINSPEED = 8.3
+        self.declare_parameter('minimal_speed', 8.2)
         self.MINSPEED = (self.get_parameter('minimal_speed').get_parameter_value().double_value)
+        # self.MINSPEED = 8.01
         self.NEUTRAL = 8.0
-        self.REVERSEMINSPEED = 7.6
+        self.REVERSEMINSPEED = 7.7
         self.REVERSEMAXSPEED = 6.5
         self.DIR_VEL_THRESHOLD_M_S = 0.05
         self.curr_velocity_m_s = 0.0
@@ -82,15 +81,15 @@ class CommandSpeed(Node):
         elif -0.01 < cmd_speed < 0.01:
             self.neutral()
 
-        elif -1 < cmd_speed < -0.02:
+        elif -1 < cmd_speed < -0.01:
             self.reverse()
 
     def forward(self):
-        self.publish_stm32_data(self.MINSPEED)# + self.cmd_velocity * (self.MAXSPEED - self.MINSPEED))
+        self.publish_stm32_data(self.MINSPEED + self.cmd_velocity * (self.MAXSPEED - self.MINSPEED))
         #self.get_logger().info(f"speed is :{self.MINSPEED}")
 
     def reverse(self):
-        self.publish_stm32_data(self.REVERSEMINSPEED + self.cmd_velocity * (self.REVERSEMINSPEED - self.REVERSEMAXSPEED))
+        self.publish_stm32_data(self.REVERSEMAXSPEED)# + self.cmd_velocity * (self.REVERSEMINSPEED - self.REVERSEMAXSPEED))
 
     def neutral(self):
         self.publish_stm32_data(self.NEUTRAL)

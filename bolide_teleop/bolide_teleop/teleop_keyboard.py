@@ -86,7 +86,7 @@ class KeyboardController(Node):
             coeff = 0.0
         if action == 'UP':
             if self.current_speed < 0.05 * coeff:
-                self.current_speed = 0.015 #0.0200000004842879 * coeff
+                self.current_speed = 0.056#0.0200000004842879 * coeff
             else:
                 self.current_speed = 0.05 * coeff
         elif action == 'DOWN':
