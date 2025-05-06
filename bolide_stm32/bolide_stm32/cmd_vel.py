@@ -30,7 +30,7 @@ class CommandSpeed(Node):
         self.init = 0
         self.debug = True
         self.MAXSPEED = 10
-        self.declare_parameter('minimal_speed', 8.2)
+        self.declare_parameter('minimal_speed', 8.3)
         self.MINSPEED = (self.get_parameter('minimal_speed').get_parameter_value().double_value)
         # self.MINSPEED = 8.01
         self.NEUTRAL = 8.0
