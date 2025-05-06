@@ -2,7 +2,7 @@
 The official Sorbonne University ROS2 repository for the CoVaPsy course at ENS Paris-Saclay
 **When cloning this repository, please put it in the src folder of you workspace**
 
-- [course\_ros2](#course_ros2)
+- [low_level\_ros2](#low_level_ros2)
     - [General informations](#general-informations)
   - [Launching the car (for now)](#launching-the-car-for-now)
   - [Low level nodes](#low-level-nodes)
