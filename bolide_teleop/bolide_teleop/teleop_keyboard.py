@@ -6,7 +6,6 @@ from rclpy.node import Node
 from rclpy.executors import ExternalShutdownException
 from std_msgs.msg import Float32
 from bolide_interfaces.msg import SpeedDirection
-import readchar # read characters 
 
 # TODO - work on brake
 
@@ -72,16 +71,13 @@ class KeyboardController(Node):
         Args:
             coeff (float, optional): a simple coefficient. Defaults to 1.0.
         """
-        mykey = readchar.readkey() # click.getchar()
+        mykey = click.getchar()
 
-        action = self.key_mapping.get(mykey) #[mykey]
+        action = self.key_mapping[mykey]
 
-        if action is None:
-            self.get_logger().warn(f"[WARN] -- No actions for key : {mykey}")
-            return # Exit the function if there's no action 
-
-        # if action == '':
-        #     coeff = 0.0
+        
+        if action == '':
+            coeff = 0.0
         if action == 'UP':
             if self.current_speed < 0.05 * coeff:
                 self.current_speed = 0.015#0.0200000004842879 * coeff
