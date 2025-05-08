@@ -34,7 +34,7 @@ class CommandSpeed(Node):
         self.declare_parameter('minimal_speed', 8.3)
         self.debug = self.get_parameter('debug').get_parameter_value().bool_value
         if self.debug:
-            rclpy.logging.set_logger_level('cmd_vel', 10) # 10 is for DEBUG level
+            rclpy.logging.set_logger_level('cmd_vel', 10)  # 10 is for DEBUG level
 
         self.MAXSPEED = 10
         self.MINSPEED = self.get_parameter('minimal_speed').get_parameter_value().double_value

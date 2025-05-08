@@ -15,17 +15,22 @@ class KeyboardController(Node):
     """
     def __init__(self):
         super().__init__('teleop_node')
+
+        # PARAMS
+        self.declare_parameter('debug', False)
+
         self.get_logger().info("[INFO] -- Teleop node started, Keyboard interrupt (CTRL+C) will stop the node")
 
         # A debug bool to print or not the data
-        self.debug = False
+        self.debug = self.get_parameter('debug').get_parameter_value().bool_value
+        if self.debug:
+            rclpy.logging.set_logger_level('teleop_node', 10)  # 10 is for DEBUG level
 
         # create publish of speed and direction
         self.speed_pub = self.create_publisher(Float32, '/cmd_vel', 10)
         self.direction_pub = self.create_publisher(Float32, '/cmd_dir', 10)
 
         # Timer for the data
-        # TODO - check if we can reduce this time
         self.timer = self.create_timer(0.1, self.timer_callback)
 
         # init speed and direction
@@ -53,26 +58,9 @@ class KeyboardController(Node):
         self.speed_pub.publish(Float32(data=self.current_speed))
         self.direction_pub.publish(Float32(data=self.current_direction))
 
-    def on_key_press(self, in_key):
-        key = self.get_key_char(in_key)
-        if key in self.key_mapping.keys():
-            self.perform_action(self.key_mapping[key])
-        else:
-            self.get_logger().warn(f"[WARN] -- No actions for key : {key}")
-
-    def on_key_release(self, in_key):
-        key = self.get_key_char(in_key)
-        if key in self.key_mapping.keys():
-            self.perform_action(self.key_mapping[key], coeff=0)
-
-    def get_key_char(self, key):
-        if hasattr(key, 'char'):
-            return key.char
-        else:
-            return key
-
     def perform_action(self, coeff=1.0):
-        """Perform action depending on the key pressed
+        """Perform action depending on the key pressed.\
+            Can be better but we want it to be simple because it is a autonomous car normally.
 
         Args:
             coeff (float, optional): a simple coefficient. Defaults to 1.0.
@@ -81,19 +69,12 @@ class KeyboardController(Node):
 
         action = self.key_mapping[mykey]
 
-        
         if action == '':
             coeff = 0.0
         if action == 'UP':
-            if self.current_speed < 0.05 * coeff:
-                self.current_speed = 0.056#0.0200000004842879 * coeff
-            else:
-                self.current_speed = 0.05 * coeff
+            self.current_speed = 0.056 * coeff
         elif action == 'DOWN':
-            if self.current_speed > -0.05 * coeff:
-                self.current_speed -= 0.05 * coeff
-            else:
-                self.current_speed = -0.05 * coeff
+            self.current_speed -= 0.05 * coeff
         elif action == 'LEFT':
             if self.current_direction > -1.0:
                 self.current_direction -= 1.0
@@ -105,7 +86,7 @@ class KeyboardController(Node):
             else:
                 self.current_direction = 1.0
         elif action == 'BRAKE':
-            self.current_speed = 2.0 * coeff
+            self.current_speed = 2.0
         elif action == 'QUIT':
             exit()
         elif action == 'NEUTRAL':

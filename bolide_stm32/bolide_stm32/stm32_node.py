@@ -19,6 +19,14 @@ class STM32_Parser(Node):
     def __init__(self):
         super().__init__('stm32_node')
 
+        # PARAMS
+        self.declare_parameter('debug', False)
+
+        self.debug = self.get_parameter('debug').get_parameter_value().bool_value
+
+        if self.debug:
+            rclpy.logging.set_logger_level('stm32_node', 10)  # 10 is for DEBUG level
+
         # STM32 set-up
         self.BAUDRATE = 112500
 
@@ -202,6 +210,8 @@ class STM32_Parser(Node):
             self.fork_data.header.stamp = stamp
             self.imu_data.header.stamp = stamp
             self.stm_pub.publish(self.sensor_data)
+            if self.debug:
+                self.get_logger().debug(f"[DEBUG] -- stm32 sensors value :\n {self.sensor_data}")
 
         # if (rclpy.ok()):
         self.speed_pub.publish(self.fork_data)

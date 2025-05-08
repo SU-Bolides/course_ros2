@@ -56,6 +56,13 @@ class CommandDirection(Node):
     def __init__(self):
         super().__init__('cmd_dir')
 
+        # PARAMS
+        self.declare_parameter('debug', False)
+
+        self.debug = self.get_parameter('debug').get_parameter_value().bool_value
+        if self.debug:
+            rclpy.logging.set_logger_level('cmd_dir', 10)  # 10 is for DEBUG level
+
         # Dynamixel stuff:
         # Protocol version
         self.PROTOCOL_VERSION = 1.0  # See which protocol version is used in the Dynamixel
@@ -66,6 +73,7 @@ class CommandDirection(Node):
         self.DEVICENAME = '/dev/ttyU2D2'
         # udev rule in /etc/udev/rules.d/99-usb-dynamixel.rules:
         # SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", SYMLINK+="ttyU2D2", MODE="0777"
+        # see tutorials.md
 
         self.MAX_STEERING_ANGLE_DEG = 15.5  # deg
 
@@ -95,14 +103,6 @@ class CommandDirection(Node):
         # Timer
         self.dynamixels_comms = self.create_timer(0.03, self.dxl_callback)  # Update the dynamixels every 30ms (33Hz)
 
-    def set_steering_angle(self):
-        """Update the servomotor's position in function of the target angle."""
-        try:
-            pos = set_dir_deg(self.target_steering_angle_deg)  # Convert in DXL position
-            self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL_ID, 30, pos)  # Sending position to servomotor
-        except Exception as e:
-            self.get_logger().warn(f"[WARNING] -- DYNAMIXEL PROBLEM: {e}")
-
     def dxl_callback(self):
         """Update the dynamixels.\
         We check if the target steering angle is within the limits of the steering angle
@@ -112,6 +112,10 @@ class CommandDirection(Node):
             pos, _, _ = self.packetHandler.read2ByteTxRx(self.portHandler, self.DXL_ID, 36)   # Read the current position of the steering servo
             self.curr_steering_angle_deg = -180/3.14159*pos2psi(pos)  # Convert the position to an angle in degrees
             pos = set_dir_deg(self.target_steering_angle_deg)  # Convert in DXL position
+
+            if self.debug:  # for debug
+                self.get_logger().debug(f"[DEBUG] -- DXL position : {pos}")
+
             self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL_ID, 30, pos)  # Sending position to servomotor
         except Exception as e:
             self.get_logger().warn("[WARNING] -- DYNAMIXEL PROBLEM")
@@ -130,9 +134,6 @@ class CommandDirection(Node):
             self.target_steering_angle_deg = -data.data * self.MAX_STEERING_ANGLE_DEG  # direction
 
         self.last_command_time = self.get_clock().now()
-
-        # Recall the function to update the servomoteur's direction
-        # self.set_steering_angle()
 
 
 def main(args=None):
