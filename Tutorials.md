@@ -18,6 +18,10 @@ This file contains a bunch of tutorial for the car or ROS2, it's a good idea to 
       - [At the end](#at-the-end)
     - [Control the car from your PC](#control-the-car-from-your-pc)
       - [Troubleshooting](#troubleshooting)
+    - [Quick Lesson and Tutorials on log in ROS2](#quick-lesson-and-tutorials-on-log-in-ros2)
+      - [Severity level](#severity-level)
+      - [On your code](#on-your-code)
+      - [Changing the Severity level of your node](#changing-the-severity-level-of-your-node)
 
 
 ---
@@ -163,3 +167,46 @@ Follow these steps to control the car from your PC:
 If you encounter any issues, please double-check the steps above or ask for assistance. Some key steps might have been overlooked.
 
 ---
+### Quick Lesson and Tutorials on log in ROS2
+Logging is a subsystem method in ROS2 which permits to send log message to 3 different targets :
+- the log files on your computer (normally at ~/.ROS folder)
+- to the /rosout topic on the ROS2 Network
+- on your terminal when at the correct severity level
+
+#### Severity level
+there is 5 severity levels for log messages :
+- DEBUG (10)
+- INFO (20)
+- WARN (30)
+- ERROR (40)
+- FATAL (50)
+
+Normally your severity level is put on INFO level. It means that only INFO message and higher (WARN, ERROR and FATAL) will be see on your terminal.
+
+#### On your code
+When creating a node, ROS2 will automatically attach a logging system to it, with the name of your node, set at INFO severity level. To use log message you will need to type in your code (if you're in a Node Class):
+```python
+self.get_logger().info("message")
+```
+This will sent an INFO severity level message. Use .debug( ), .warn( ), .error( ), .fatal( ) for other severity levels.
+
+A good practice to have is to use the correct severity level for your message. An INFO level when it is a simple message, a WARN when you want to warn about something, ERROR when there is a error, ...
+
+With your message, you can also indicate if you want this log to be print only once, every x seconds, or every time except the first time with this line :
+```python
+self.get_logger().info("message", once=True)
+```
+```python
+self.get_logger().info("message", throttle_duration_sec=x_seconds)
+```
+```python
+self.get_logger().info("message", skip_first=True)
+```
+
+#### Changing the Severity level of your node
+As you saw before, you can't to print a DEBUG log message on your terminal because the severity level is set to INFO. To change this you just need to type in your code:
+```python
+rclpy.logging().set_logger_level('name_of_the_node', 10)
+```
+
+Here 10 is for DEBUG Level.
