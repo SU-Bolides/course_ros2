@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'cmd_dir = bolide_direction.cmd_dir:main',
+            'cmd_dir_node = bolide_direction.cmd_dir_node:main',
         ],
     },
 )

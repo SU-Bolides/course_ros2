@@ -9,21 +9,21 @@ import os
 
 def generate_launch_description():
     return LaunchDescription([
-        Node(
-            package='sllidar_ros2',
-            executable='sllidar_node',
-            name='sllidar_node',
-            output='screen',
-            parameters=[
-                {'serial_port': '/dev/ttyLIDAR'},
-                {'serial_baudrate': 256000},
-                {'frame_id': 'laser_frame'},
-                {'inverted': False},
-                {'angle_compensate': True},
-                {'scan_mode': 'Express'}
-            ],
-            respawn=True
-        ),
+        # Node(
+        #     package='sllidar_ros2',
+        #     executable='sllidar_node',
+        #     name='sllidar_node',
+        #     output='screen',
+        #     parameters=[
+        #         {'serial_port': '/dev/ttyLIDAR'},
+        #         {'serial_baudrate': 256000},
+        #         {'frame_id': 'laser_frame'},
+        #         {'inverted': False},
+        #         {'angle_compensate': True},
+        #         {'scan_mode': 'Express'}
+        #     ],
+        #     respawn=True
+        # ),
         Node(
             package='bolide_stm32',
             executable='stm32_node',
@@ -33,8 +33,8 @@ def generate_launch_description():
         ),
         Node(
             package='bolide_stm32',
-            executable='cmd_vel',
-            name='cmd_vel',
+            executable='cmd_vel_node',
+            name='cmd_vel_node',
             output='screen',
             parameters=[
                 {'minimal_speed' : 8.2}
@@ -43,8 +43,8 @@ def generate_launch_description():
         ),
         Node(
             package='bolide_direction',
-            executable='cmd_dir',
-            name='cmd_dir',
+            executable='cmd_dir_node',
+            name='cmd_dir_node',
             output='screen',
             respawn=True
         ),

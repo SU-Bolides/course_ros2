@@ -54,7 +54,7 @@ def set_dir_deg(angle_degre):
 
 class CommandDirection(Node):
     def __init__(self):
-        super().__init__('cmd_dir')
+        super().__init__('cmd_dir_node')
 
         # PARAMS
         self.declare_parameter('debug', False)
