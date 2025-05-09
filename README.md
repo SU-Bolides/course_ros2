@@ -57,7 +57,7 @@ If you want to launch the wall follower:
 ```shell
 ros2 launch bolide_wall_follow wall_follow.launch.py
 ```
-For more details please see [this](https://github.com/SU-Bolides/high_level_ros2).
+For more details please see [this](https://github.com/SU-Bolides/high_level_ros2). (work in progress)
 
 ## Low level nodes
 This repository contains only the low level code for the car and a simple teleop package. Please use this [repository](https://github.com/SU-Bolides/high_level_ros2) to add some high-level packages like PID process, SLAM, or data processing.
@@ -78,7 +78,7 @@ To access in a python file, you need to import the package (e.g from bolide_inte
 **If you want to create a Message or a Service for the car please put it in this package and this package only**
 
 ### Bolide Direction
-The direction of the car is controlled by a Dynamixel plug with a U2D2 connector to the Raspberry Pi. The package [bolide_direction](./bolide_direction/) have a node subscribed to a SpeedDirection message, and send to the dynamixel the angle value needed. The angle is limited by the turning mechanism of the car, so we set a maximum steering angle of 15.5 degrees. To facilitate the process, the direction value is include in [-1, 1].
+The direction of the car is controlled by a Dynamixel plug with a U2D2 connector to the Raspberry Pi. The package [bolide_direction](./bolide_direction/) have a [node](./bolide_direction/bolide_direction/cmd_dir_node.py) subscribed to a Float32 message, and send to the dynamixel the angle value needed. The angle is limited by the turning mechanism of the car, so we set a maximum steering angle of 15.5 degrees. To facilitate the process, the direction value is include in [-1, 1].
 The U2D2 port is dynamically connect with the port /dev/ttyU2D2 so you don't need to change the DEVICENAME after every reboot of the car.
 **If you want to add this dynamic connection on a new RPi5, please see the [tutorials](Tutorials.md#create-a-dynamic-connection-for-usb-devices)**
 
@@ -95,19 +95,21 @@ The list of sensor we don't use now but are included:
 
 The reception of the sensors data are in the [stm32_node](./bolide_stm32/bolide_stm32/stm32_node.py) and also on specified topics for every type of sensors.
 
-The micro-controller is also use to send the PWM to the propulsion motor. The [cmd_vel](./bolide_stm32/bolide_stm32/cmd_vel.py) node is a simple node sending the desired PWM value. We send it a cmd value $\in[-1, 1]\cup{2}$ where:
+The micro-controller is also use to send the PWM to the propulsion motor. The [cmd_vel_node](./bolide_stm32/bolide_stm32/cmd_vel_node.py) node is a simple node sending the desired PWM value. We send it a cmd value $\in[-1, 1]\cup{2}$ where:
 - $cmd = 0$ is the neutral mode, the car is on free wheel and will not stop immediately
 - $0.02 <= cmd < 1$ is forward
 - $-1 < cmd <=-0.02$ is backward
 - $cmd = 2$ is brake, here the motor will block the rotation of the wheels
+
 **AVOID TO USE 1 and -1 as value, it will decrease the voltage of the RPi5 and shut it off**. To fix this problem we'll need to add a second battery (one for the motors and the other for the RPi5 and other stuffs).
+
 The [stm32_node](./bolide_stm32/bolide_stm32/stm32_node.py) receive the PWM value and will send it to the motor by the D9 pin (if you want to check the voltage value). The PWM value will after be read by the ESC that will send it to the motor. If you think that the ESC is not working correctly please use the [esc_setup.py](TODO file code) code to set it up and read the md file to follow correctly the instructions. TODO
 
 When the ESC is set-up you will need to find MINSPEED, MAXSPEED, MINSPEEDFORWARD, MAXSPEEDFORWARD. Since there is two cars, maybe this value will be different for both of them ! So these values are parameters easy to change on launch. Maybe a better solution exists.
 
 ### Bolide Teleop
 This package is for controlling the car manually. For now there is a simple keyboard [teleoperation](./bolide_teleop/bolide_teleop/teleop_keyboard.py) where you can use the arrow of your keyboard to move the car. If you want to add another teleoperation node with a controller or something else, put it here.
-The teleop with the keyboard got a incrementation system so if you're backward and you want to go forward you will need to press twice the up arrow. By doing this we assure that we pass by the neutral mode, it is mandatory if you want to avoid crashes of the car. But, to pass from forward to backward you need to press 'n' before, then press one or two times on the Key down Arrow.
+The teleop with the keyboard can be tricky when passing from forward to backwar. To pass from forward to backward you need to press 'n' before, then press one or two times on the Key Down Arrow.
 By doing a teleop with a controller (PS4 controller by exemple) we'll be able to use analogical values and the command will be smoother.
 
 ### Sllidar
