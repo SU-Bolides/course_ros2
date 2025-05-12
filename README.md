@@ -20,6 +20,9 @@ The official Sorbonne University ROS2 repository for the CoVaPsy course at ENS P
 - [Official repository of the race (for schematics)](https://github.com/ajuton-ens/CourseVoituresAutonomesSaclay.git)
 - [Repository of last year (2024)](https://github.com/SU-Bolides/course_2025_slam_pkgs.git) : There is the main branch in ROS and the ROS2 branch prototype
 
+Here the link between every important components of the car.
+![the link between every elements of the car](./images/diagramme_sensor_test.png)
+
 **Check the [tutorials](Tutorials.md) if you need some extra infos.**
 
 Be prepared every time you start the car. Avoid plugging the battery if you don't want to test something with all sensors and motors, batteries take time to be charged up. You can work on the RPi5 alone or even work on your personal computer (or VM if you want absolutely to try with a ROS distro) thanks to GitHub. If the simulation is up to date, you can even work with it at home to rapidly check if a logic in your node is working.
@@ -109,7 +112,7 @@ When the ESC is set-up you will need to find MINSPEED, MAXSPEED, MINSPEEDFORWARD
 
 ### Bolide Teleop
 This package is for controlling the car manually. For now there is a simple keyboard [teleoperation](./bolide_teleop/bolide_teleop/teleop_keyboard.py) where you can use the arrow of your keyboard to move the car. If you want to add another teleoperation node with a controller or something else, put it here.
-The teleop with the keyboard can be tricky when passing from forward to backwar. To pass from forward to backward you need to press 'n' before, then press one or two times on the Key Down Arrow.
+The teleop with the keyboard can be tricky when passing from forward to backward. To pass from forward to backward you need to press 'n' before, then press one or two times on the Key Down Arrow.
 By doing a teleop with a controller (PS4 controller by exemple) we'll be able to use analogical values and the command will be smoother.
 
 ### Sllidar
